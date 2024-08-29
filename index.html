@@ -1,0 +1,48 @@
+<header>
+  <nav>
+    <a href="#dishes">Dishes</a>
+    <a href="#bulk-orders">Bulk Orders</a>
+    <a href="#sweets">Sweets</a>
+    <a href="#appetizers">Appetizers</a>
+    <a href="#salads">Salads</a>
+  </nav>
+</header>
+
+<section id="dishes">
+  <h2>Dishes</h2>
+  <div class="item">
+    <img src="dish.jpg" alt="Dish Name">
+    <h3>Dish Name</h3>
+    <p>Description of the dish</p>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" value="1" min="1">
+    <p>Price per person: <span id="price">10</span></p>
+    <button onclick="addToCart('Dish Name', quantity.value, price)">Add to Cart</button>
+  </div>
+</section>
+
+<!-- Repeat similar sections for Bulk Orders, Sweets, Appetizers, Salads -->
+
+<section id="cart">
+  <h2>Your Cart</h2>
+  <div id="cart-items">
+    <!-- Dynamically generated cart items will be listed here -->
+  </div>
+  <p>Total: <span id="total"></span></p>
+  <p>30% of Total: <span id="discount"></span></p>
+  <form id="order-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" required>
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" required></textarea>
+    <label for="date">Delivery Date:</label>
+    <input type="date" id="date" name="date" required>
+    <button type="submit">Submit Order</button>
+  </form>
+</section>
+
+<footer>
+  <p>Contact Us: example@example.com | Follow us on Social Media</p>
+</footer>
