@@ -14,14 +14,14 @@
                 <span class="contact-info">+1 520-360-7081</span>
             </div>
             <div class="header-right">
-                <a href="#" class="cart-icon"><img src="cart-icon.png" alt="Cart"></a>
+                <a href="#" class="cart-icon" id="cart-button"><img src="cart-icon.png" alt="Cart"></a>
                 <a href="#" class="contact-button">Contact Us</a>
             </div>
         </div>
     </header>
 
     <nav class="main-nav">
-        <button class="menu-button">Menu</button>
+        <button class="menu-button" id="menu-button">Menu</button>
     </nav>
 
     <section id="menu" class="menu-section">
@@ -61,7 +61,7 @@
         </div>
     </section>
 
-    <section id="cart" class="cart-section">
+    <section id="cart" class="cart-section hidden">
         <h2>Order Overview</h2>
         <div id="cart-items">
             <!-- Dynamically generated cart items will be listed here -->
@@ -72,7 +72,7 @@
             <p>Taxes: $<span id="taxes">0.00</span></p>
             <h3>Total: $<span id="total">0.00</span></h3>
             <button class="checkout-button">Checkout</button>
-            <a href="#" class="continue-shopping">Continue shopping</a>
+            <a href="#" id="continue-shopping" class="continue-shopping">Continue shopping</a>
         </div>
     </section>
 
