@@ -1,5 +1,15 @@
 let cart = [];
 
+document.getElementById('cart-button').addEventListener('click', function() {
+    document.getElementById('menu').classList.add('hidden');
+    document.getElementById('cart').classList.remove('hidden');
+});
+
+document.getElementById('continue-shopping').addEventListener('click', function() {
+    document.getElementById('cart').classList.add('hidden');
+    document.getElementById('menu').classList.remove('hidden');
+});
+
 function addToCart(itemName, price, quantity) {
     const existingItem = cart.find(item => item.name === itemName);
     if (existingItem) {
