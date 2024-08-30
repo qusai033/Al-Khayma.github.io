@@ -1,18 +1,68 @@
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-document.getElementById('cart-button').addEventListener('click', function() {
-    document.getElementById('menu').classList.add('hidden');
-    document.getElementById('cart').classList.remove('hidden');
-});
+// Ensure the cart is updated when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    updateCart(); // Display the existing cart items
 
-document.getElementById('continue-shopping').addEventListener('click', function() {
-    document.getElementById('cart').classList.add('hidden');
-    document.getElementById('menu').classList.remove('hidden');
-});
+    // Event listeners for navigation
+    document.getElementById('cart-button').addEventListener('click', function() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('cart').classList.remove('hidden');
+    });
 
-document.getElementById('menu-button').addEventListener('click', function() {
-    document.getElementById('cart').classList.add('hidden');
-    document.getElementById('menu').classList.remove('hidden');
+    document.getElementById('continue-shopping').addEventListener('click', function() {
+        document.getElementById('cart').classList.add('hidden');
+        document.getElementById('menu').classList.remove('hidden');
+    });
+
+    document.getElementById('menu-button').addEventListener('click', function() {
+        document.getElementById('cart').classList.add('hidden');
+        document.getElementById('menu').classList.remove('hidden');
+    });
+
+    document.getElementById('logo').addEventListener('click', function() {
+        document.getElementById('cart').classList.add('hidden');
+        document.getElementById('menu').classList.remove('hidden');
+    });
+
+    // Attach event listeners to quantity buttons and add to cart buttons
+    document.querySelectorAll('.plus-btn').forEach(button => {
+        button.addEventListener('click', event => {
+            const input = event.target.parentElement.querySelector('input');
+            input.value = parseInt(input.value) + 1;
+        });
+    });
+
+    document.querySelectorAll('.minus-btn').forEach(button => {
+        button.addEventListener('click', event => {
+            const input = event.target.parentElement.querySelector('input');
+            if (input.value > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        });
+    });
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', event => {
+            const productCard = event.target.closest('.product-card');
+            const itemName = productCard.querySelector('h3').textContent;
+            const price = parseFloat(productCard.querySelector('p').textContent.replace('$', ''));
+            const quantity = parseInt(productCard.querySelector('input').value);
+            const image = productCard.querySelector('img').src;
+
+            addToCart(itemName, price, quantity, image);
+        });
+    });
+
+    // Restore previous page state
+    const currentPage = localStorage.getItem('currentPage') || 'menu';
+    if (currentPage === 'cart') {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('cart').classList.remove('hidden');
+    } else {
+        document.getElementById('menu').classList.remove('hidden');
+        document.getElementById('cart').classList.add('hidden');
+    }
 });
 
 function addToCart(itemName, price, quantity, image) {
@@ -23,6 +73,7 @@ function addToCart(itemName, price, quantity, image) {
         cart.push({ name: itemName, price, quantity, image });
     }
     updateCart();
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 function updateCart() {
@@ -52,62 +103,11 @@ function updateCart() {
     subtotalElement.textContent = subtotal.toFixed(2);
     totalElement.textContent = subtotal.toFixed(2);
     cartCountElement.textContent = totalItems;
+
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 function removeFromCart(itemName) {
     cart = cart.filter(item => item.name !== itemName);
     updateCart();
 }
-
-// Handle quantity buttons
-document.querySelectorAll('.plus-btn').forEach(button => {
-    button.addEventListener('click', event => {
-        const input = event.target.parentElement.querySelector('input');
-        input.value = parseInt(input.value) + 1;
-    });
-});
-
-document.querySelectorAll('.minus-btn').forEach(button => {
-    button.addEventListener('click', event => {
-        const input = event.target.parentElement.querySelector('input');
-        if (input.value > 1) {
-            input.value = parseInt(input.value) - 1;
-        }
-    });
-});
-
-// Handle Add to Cart buttons
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', event => {
-        const productCard = event.target.closest('.product-card');
-        const itemName = productCard.querySelector('h3').textContent;
-        const price = parseFloat(productCard.querySelector('p').textContent.replace('$', ''));
-        const quantity = parseInt(productCard.querySelector('input').value);
-        const image = productCard.querySelector('img').src;
-
-        addToCart(itemName, price, quantity, image);
-    });
-});
-
-document.getElementById('order-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const formData = new FormData(this);
-    const orderSummary = cart.map(item => `${item.name} - $${item.price} x ${item.quantity}`).join('\n');
-    formData.set('order-summary', orderSummary);
-    
-    fetch('submit_order.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-        if (data === 'success') {
-            document.getElementById('thank-you-message').classList.remove('hidden');
-            document.getElementById('order-form').classList.add('hidden');
-        } else {
-            alert('There was a problem submitting your order. Please try again.');
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
