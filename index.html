@@ -72,7 +72,26 @@
             <p>Delivery: $<span id="delivery">0.00</span></p>
             <p>Taxes: $<span id="taxes">0.00</span></p>
             <h3>Total: $<span id="total">0.00</span></h3>
-            <button class="checkout-button">Checkout</button>
+            <form id="order-form">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="phone">Phone #:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div>
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <div>
+                    <input type="checkbox" id="zelle-agreement" name="zelle-agreement" required>
+                    <label for="zelle-agreement">I understand I have to Zelle 30% of the total price to place my order</label>
+                </div>
+                <button type="submit">Submit Order</button>
+            </form>
+
             <a href="#" id="continue-shopping" class="continue-shopping">Continue shopping</a>
         </div>
     </section>
