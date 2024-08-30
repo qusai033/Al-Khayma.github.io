@@ -111,3 +111,11 @@ document.getElementById('order-form').addEventListener('submit', function(event)
     })
     .catch(error => console.error('Error:', error));
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('date');
+    const today = new Date();
+    const minDate = new Date(today.setDate(today.getDate() + 2)).toISOString().split('T')[0];
+    dateInput.setAttribute('min', minDate);
+});
