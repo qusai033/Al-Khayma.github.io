@@ -1,3 +1,15 @@
+/* General Styles */
+.hidden {
+    display: none;
+}
+
+/* Thank You Message */
+#thank-you-message h3 {
+    color: green;
+    text-align: center;
+}
+
+
 #order-form {
     margin-top: 20px;
     display: flex;
