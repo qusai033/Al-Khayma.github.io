@@ -1,5 +1,28 @@
 let cart = [];
 
+
+document.getElementById('cart-button').addEventListener('click', function(event) {
+    event.preventDefault();  // Prevent default link behavior
+    document.getElementById('menu').classList.add('hidden');
+    document.getElementById('cart').classList.remove('hidden');
+});
+document.getElementById('cart-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    alert('Cart button clicked!'); // This will confirm if the event listener is working
+});
+
+document.getElementById('continue-shopping').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('cart').classList.add('hidden');
+    document.getElementById('menu').classList.remove('hidden');
+});
+
+document.getElementById('menu-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('cart').classList.add('hidden');
+    document.getElementById('menu').classList.remove('hidden');
+});
+
 // Load cart from localStorage on page load
 document.addEventListener('DOMContentLoaded', function() {
     const storedCart = localStorage.getItem('cart');
