@@ -6,11 +6,12 @@ document.getElementById('cart-button').addEventListener('click', function(event)
     document.getElementById('menu').classList.add('hidden');
     document.getElementById('cart').classList.remove('hidden');
 });
+/*
 document.getElementById('cart-button').addEventListener('click', function(event) {
     event.preventDefault();
     alert('Cart button clicked!'); // This will confirm if the event listener is working
 });
-
+*/
 document.getElementById('continue-shopping').addEventListener('click', function(event) {
     event.preventDefault();
     document.getElementById('cart').classList.add('hidden');
