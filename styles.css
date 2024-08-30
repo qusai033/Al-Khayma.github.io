@@ -1,3 +1,37 @@
+#order-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#order-form label {
+    font-weight: bold;
+}
+
+#order-form input, #order-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#order-form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+#order-form button[type="submit"] {
+    background-color: #6b4f1d;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+
 .cart-item {
     display: flex;
     align-items: center;
