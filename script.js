@@ -91,27 +91,23 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
 
 document.getElementById('order-form').addEventListener('submit', function(event) {
     event.preventDefault();
-
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const address = document.getElementById('address').value;
-    const zelleAgreement = document.getElementById('zelle-agreement').checked;
-
-    if (zelleAgreement) {
-        const orderDetails = cart.map(item => `${item.name} - $${item.price} x ${item.quantity}`).join('\n');
-        const total = document.getElementById('total').textContent;
-
-        const emailBody = `
-            Name: ${name}
-            Phone: ${phone}
-            Address: ${address}
-            Order Details:
-            ${orderDetails}
-            Total: $${total}
-        `;
-
-        window.location.href = `mailto:qusai4business@gmail.com?subject=New Order&body=${encodeURIComponent(emailBody)}`;
-    } else {
-        alert('You must agree to the Zelle payment terms to place an order.');
-    }
+    
+    const formData = new FormData(this);
+    const orderSummary = cart.map(item => `${item.name} - $${item.price} x ${item.quantity}`).join('\n');
+    formData.set('order-summary', orderSummary);
+    
+    fetch('submit_order.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data === 'success') {
+            document.getElementById('thank-you-message').classList.remove('hidden');
+            document.getElementById('order-form').classList.add('hidden');
+        } else {
+            alert('There was a problem submitting your order. Please try again.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
 });
