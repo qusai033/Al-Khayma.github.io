@@ -1,18 +1,18 @@
 let cart = [];
 
-document.getElementById('cart-button').addEventListener('click', function() {
-    document.getElementById('menu').classList.add('hidden');
-    document.getElementById('cart').classList.remove('hidden');
-});
+// Load cart from localStorage on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+        cart = JSON.parse(storedCart);
+        updateCart(); // Update the cart display with loaded items
+    }
 
-document.getElementById('continue-shopping').addEventListener('click', function() {
-    document.getElementById('cart').classList.add('hidden');
-    document.getElementById('menu').classList.remove('hidden');
-});
-
-document.getElementById('menu-button').addEventListener('click', function() {
-    document.getElementById('cart').classList.add('hidden');
-    document.getElementById('menu').classList.remove('hidden');
+    // Set minimum date for the delivery date input
+    const dateInput = document.getElementById('date');
+    const today = new Date();
+    const minDate = new Date(today.setDate(today.getDate() + 2)).toISOString().split('T')[0];
+    dateInput.setAttribute('min', minDate);
 });
 
 function addToCart(itemName, price, quantity, image) {
@@ -52,6 +52,9 @@ function updateCart() {
     subtotalElement.textContent = subtotal.toFixed(2);
     totalElement.textContent = subtotal.toFixed(2);
     cartCountElement.textContent = totalItems;
+
+    // Save cart to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 function removeFromCart(itemName) {
@@ -87,35 +90,4 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
 
         addToCart(itemName, price, quantity, image);
     });
-});
-
-document.getElementById('order-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const formData = new FormData(this);
-    const orderSummary = cart.map(item => `${item.name} - $${item.price} x ${item.quantity}`).join('\n');
-    formData.set('order-summary', orderSummary);
-    
-    fetch('submit_order.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-        if (data === 'success') {
-            document.getElementById('thank-you-message').classList.remove('hidden');
-            document.getElementById('order-form').classList.add('hidden');
-        } else {
-            alert('There was a problem submitting your order. Please try again.');
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const dateInput = document.getElementById('date');
-    const today = new Date();
-    const minDate = new Date(today.setDate(today.getDate() + 2)).toISOString().split('T')[0];
-    dateInput.setAttribute('min', minDate);
 });
