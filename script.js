@@ -110,7 +110,7 @@ document.getElementById('order-form').addEventListener('submit', function(event)
             Total: $${total}
         `;
 
-        window.location.href = `mailto:youremail@example.com?subject=New Order&body=${encodeURIComponent(emailBody)}`;
+        window.location.href = `mailto:qusai4business@gmail.com?subject=New Order&body=${encodeURIComponent(emailBody)}`;
     } else {
         alert('You must agree to the Zelle payment terms to place an order.');
     }
