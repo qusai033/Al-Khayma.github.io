@@ -1,121 +1,97 @@
-let cart = [];
-
-document.getElementById('cart-button').addEventListener('click', function() {
-    document.getElementById('menu').classList.add('hidden');
-    document.getElementById('cart').classList.remove('hidden');
-});
-
-document.getElementById('continue-shopping').addEventListener('click', function() {
-    document.getElementById('cart').classList.add('hidden');
-    document.getElementById('menu').classList.remove('hidden');
-});
-
-document.getElementById('menu-button').addEventListener('click', function() {
-    document.getElementById('cart').classList.add('hidden');
-    document.getElementById('menu').classList.remove('hidden');
-});
-
-function addToCart(itemName, price, quantity, image) {
-    const existingItem = cart.find(item => item.name === itemName);
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        cart.push({ name: itemName, price, quantity, image });
-    }
-    updateCart();
-}
-
-function updateCart() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const subtotalElement = document.getElementById('subtotal');
-    const totalElement = document.getElementById('total');
-    const cartCountElement = document.getElementById('cart-count');
-
-    cartItemsContainer.innerHTML = '';
-    let subtotal = 0;
-    let totalItems = 0;
-
-    cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-        totalItems += item.quantity;
-
-        cartItemsContainer.innerHTML += `
-            <div class="cart-item">
-                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-                <p>${item.name} - $${item.price} x ${item.quantity}</p>
-                <button onclick="removeFromCart('${item.name}')">Remove</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Khayma Online Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-left"></div>
+            <img src="logo.png" alt="Logo" class="logo">
+            <div class="header-right">
+                <a href="#" class="cart-icon" id="cart-button">
+                    <img src="cart.png" alt="Cart">
+                    <span id="cart-count">0</span> <!-- This span will show the number of items -->
+                </a>
+                <a href="#" class="contact-button">Contact Us</a>
             </div>
-        `;
-    });
+        </div>
+    </header>
 
-    subtotalElement.textContent = subtotal.toFixed(2);
-    totalElement.textContent = subtotal.toFixed(2);
-    cartCountElement.textContent = totalItems;
-}
+    <nav class="main-nav">
+    <button href="#" class="menu-button" id="menu-button">Menu</button>
+    </nav>
 
-function removeFromCart(itemName) {
-    cart = cart.filter(item => item.name !== itemName);
-    updateCart();
-}
+    <section id="menu" class="menu-section">
+        <div class="search-sort-container">
+            <input type="text" placeholder="Search..." class="search-input">
+            <select class="sort-select">
+                <option value="featured">Featured</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+            </select>
+        </div>
 
-// Handle quantity buttons
-document.querySelectorAll('.plus-btn').forEach(button => {
-    button.addEventListener('click', event => {
-        const input = event.target.parentElement.querySelector('input');
-        input.value = parseInt(input.value) + 1;
-    });
-});
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="img1.png" alt="Tray of Rice">
+                <h3>Tray of Rice</h3>
+                <p>$40.00</p>
+                <div class="quantity-selector">
+                    <button class="minus-btn">-</button>
+                    <input type="number" value="1" min="1">
+                    <button class="plus-btn">+</button>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="img2.png" alt="Half Tray of Rice">
+                <h3>Half Tray of Rice</h3>
+                <p>$30.00</p>
+                <div class="quantity-selector">
+                    <button class="minus-btn">-</button>
+                    <input type="number" value="1" min="1">
+                    <button class="plus-btn">+</button>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Repeat for other products -->
+        </div>
+    </section>
 
-document.querySelectorAll('.minus-btn').forEach(button => {
-    button.addEventListener('click', event => {
-        const input = event.target.parentElement.querySelector('input');
-        if (input.value > 1) {
-            input.value = parseInt(input.value) - 1;
-        }
-    });
-});
-
-// Handle Add to Cart buttons
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', event => {
-        const productCard = event.target.closest('.product-card');
-        const itemName = productCard.querySelector('h3').textContent;
-        const price = parseFloat(productCard.querySelector('p').textContent.replace('$', ''));
-        const quantity = parseInt(productCard.querySelector('input').value);
-        const image = productCard.querySelector('img').src;
-
-        addToCart(itemName, price, quantity, image);
-    });
-});
-
-document.getElementById('order-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+    <section id="cart" class="cart-section hidden">
+        <h2>Order Overview</h2>
+        <div id="cart-items">
+            <!-- Dynamically generated cart items will be listed here -->
+        </div>
+        <div class="cart-summary">
+            <p>Subtotal: $<span id="subtotal">0.00</span></p>
+            <p>Delivery: $<span id="delivery">0.00</span></p>
+            <p>Taxes: $<span id="taxes">0.00</span></p>
+            <h3>Total: $<span id="total">0.00</span></h3>
+        </div>
     
-    const formData = new FormData(this);
-    const orderSummary = cart.map(item => `${item.name} - $${item.price} x ${item.quantity}`).join('\n');
-    formData.set('order-summary', orderSummary);
-    
-    fetch('submit_order.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-        if (data === 'success') {
-            document.getElementById('thank-you-message').classList.remove('hidden');
-            document.getElementById('order-form').classList.add('hidden');
-        } else {
-            alert('There was a problem submitting your order. Please try again.');
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
+        <form id="order-form" method="POST">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+            <textarea id="address" name="address" placeholder="Your Address" required></textarea>
+            
+            <label for="date">Must order 2 days in advance:</label>
+            <input type="date" id="date" name="date" placeholder="Delivery Date" required>
+            
+            <input type="hidden" id="order-summary" name="order-summary">
+            <button type="submit" class="checkout-button">Submit</button>
+        </form>
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const dateInput = document.getElementById('date');
-    const today = new Date();
-    const minDate = new Date(today.setDate(today.getDate() + 2)).toISOString().split('T')[0];
-    dateInput.setAttribute('min', minDate);
-});
+    <footer>
+        <p>Contact Us: qusai4business@gmail.com | Follow us on Social Media</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
