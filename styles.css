@@ -96,7 +96,6 @@ input[type="number"] {
 }
 
 .header-right {
-    flex: 1;
     display: flex;
     align-items: center;
 }
