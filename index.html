@@ -27,6 +27,8 @@
     </nav>
 
     <section id="menu" class="menu-section">
+        <!-- Catering Section -->
+        <h2>Catering</h2>
         <div class="search-sort-container">
             <input type="text" placeholder="Search..." class="search-input">
             <select class="sort-select">
@@ -35,8 +37,8 @@
                 <option value="price-desc">Price: High to Low</option>
             </select>
         </div>
-
         <div class="product-grid">
+            <!-- Existing Catering Items -->
             <div class="product-card">
                 <img src="img1.png" alt="Tray of Rice">
                 <h3>Tray of Rice</h3>
@@ -48,18 +50,51 @@
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
+            <!-- Add more catering items here -->
+        </div>
+    
+        <!-- Dishes Section -->
+        <h2>Dishes</h2>
+        <div class="product-grid">
             <div class="product-card">
-                <img src="img2.png" alt="Half Tray of Rice">
-                <h3>Half Tray of Rice</h3>
-                <p>$30.00</p>
+                <img src="dish1.png" alt="Dish Image">
+                <h3>Dish Name</h3>
+                <p>$XX.00</p>
                 <div class="quantity-selector">
                     <button class="minus-btn">-</button>
                     <input type="number" value="1" min="1">
                     <button class="plus-btn">+</button>
                 </div>
+                <!-- Number of People Dropdown -->
+                <label for="people">Number of People:</label>
+                <select id="people" name="people">
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                </select>
+                <!-- Separate Plates Checkbox -->
+                <div>
+                    <input type="checkbox" id="separate-plates" name="separate-plates">
+                    <label for="separate-plates">Serve in Separate Plates</label>
+                </div>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
-            <!-- Repeat for other products -->
+            <!-- Add more dish items here -->
+        </div>
+    
+        <!-- Appetizers Section -->
+        <h2>Appetizers</h2>
+        <div class="product-grid">
+            <!-- Appetizer items here -->
+        </div>
+    
+        <!-- Sweets Section -->
+        <h2>Sweets</h2>
+        <div class="product-grid">
+            <!-- Sweets items here -->
         </div>
     </section>
 
