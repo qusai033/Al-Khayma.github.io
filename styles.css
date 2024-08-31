@@ -68,9 +68,7 @@ input[type="number"] {
     object-fit: cover;
     margin-right: 10px;
 }
-
-
-/* Header */
+/* General styles for header container */
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -82,13 +80,60 @@ input[type="number"] {
     position: relative;
 }
 
+/* Position the logo in the center using margin auto */
 .logo {
     height: 50px;
-    margin-right: 15px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0 auto;
+    display: block;
 }
+
+/* Ensure the menu button does not overlap with the logo */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Ensure it takes the full width */
+    margin-top: 10px;
+}
+
+.menu-button {
+    background-color: #6b4f1d;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Adjust layout on larger screens */
+@media (min-width: 1024px) {
+    .header-container {
+        justify-content: space-between; /* Ensures elements are spaced out */
+    }
+
+    .header-left,
+    .header-right {
+        flex: 1; /* Take up remaining space */
+    }
+
+    .logo {
+        position: relative;
+        transform: translateX(-50%); /* Keep the logo centered */
+        left: 50%;
+    }
+
+    .main-nav {
+        margin-top: 0;
+        justify-content: flex-start; /* Align the menu button to the left */
+    }
+
+    .menu-button {
+        margin-left: 50%; /* Ensure it's placed correctly relative to the logo */
+        transform: translateX(-50%);
+    }
+}
+
+
 
 .header-left {
     flex: 1;
@@ -132,26 +177,11 @@ body {
     color: #333;
 }
 
-/* Header */
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 15px 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex-wrap: wrap;
-}
-
 .header-left {
     display: flex;
     align-items: center;
 }
 
-.logo {
-    height: 50px;
-    margin-right: 15px;
-}
 
 .contact-info {
     font-size: 14px;
@@ -177,24 +207,7 @@ body {
     height: 24px;
 }
 
-/* Main Navigation */
-.main-nav {
-    background-color: #fff;
-    padding: 10px 30px;
-    display: flex;
-    justify-content: center;
-    border-bottom: 1px solid #eee;
-}
 
-.menu-button {
-    background-color: #6b4f1d;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
 
 /* Menu Section */
 .menu-section {
