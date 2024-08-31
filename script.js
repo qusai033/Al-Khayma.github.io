@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Ensure the cart is updated when the page loads
-    updateCart(); 
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Event listeners for navigation
+document.addEventListener('DOMContentLoaded', function() {
+    updateCart();
+
     document.getElementById('cart-button').addEventListener('click', function() {
         navigateToSection('cart');
     });
@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         navigateToSection('menu');
     });
 
-    // Handle "Add to Cart" button clicks
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function(event) {
             const productCard = event.target.closest('.product-card');
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Restore previous page state
     const currentPage = localStorage.getItem('currentPage') || 'menu';
     navigateToSection(currentPage);
 });
@@ -86,8 +84,6 @@ function updateCart() {
     subtotalElement.textContent = subtotal.toFixed(2);
     totalElement.textContent = subtotal.toFixed(2);
     cartCountElement.textContent = totalItems;
-
-    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 function removeFromCart(itemName) {
