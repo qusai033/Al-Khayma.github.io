@@ -9,6 +9,31 @@ input[type="number"] {
     -moz-appearance: textfield; /* Firefox */
 }
 
+/* Styling the section titles */
+h2 {
+    font-size: 24px;
+    color: #6b4f1d;
+    margin-bottom: 15px;
+}
+
+/* Additional styling for product cards if needed */
+.product-card {
+    margin-bottom: 30px;
+}
+
+/* Style for the number of people dropdown */
+#people {
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Style for the checkbox */
+#separate-plates {
+    margin-top: 10px;
+}
 
 /* General Styles */
 .hidden {
