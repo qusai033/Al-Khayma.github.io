@@ -9,19 +9,93 @@ input[type="number"] {
     -moz-appearance: textfield; /* Firefox */
 }
 
-
 /* General Styles */
 .hidden {
     display: none;
 }
 
-/* Thank You Message */
-#thank-you-message h3 {
-    color: green;
-    text-align: center;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
+/* Header Container */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 100%;
+}
 
+/* Header Left and Right */
+.header-left,
+.header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Center the logo */
+.logo {
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Contact Button */
+.contact-button {
+    background-color: #6b4f1d;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Cart Icon with Item Count */
+.cart-icon {
+    position: relative;
+    margin-left: auto; /* Ensure it stays on the far right */
+}
+
+#cart-count {
+    background-color: #6b4f1d;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 8px;
+    font-size: 14px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+/* Menu Button */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.menu-button {
+    background-color: #6b4f1d;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Order Form */
 #order-form {
     margin-top: 20px;
     display: flex;
@@ -33,7 +107,8 @@ input[type="number"] {
     font-weight: bold;
 }
 
-#order-form input, #order-form textarea {
+#order-form input,
+#order-form textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -55,7 +130,7 @@ input[type="number"] {
     margin-top: 15px;
 }
 
-
+/* Cart Items */
 .cart-item {
     display: flex;
     align-items: center;
@@ -68,174 +143,8 @@ input[type="number"] {
     object-fit: cover;
     margin-right: 10px;
 }
-/* General styles for header container */
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 15px 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex-wrap: wrap;
-    position: relative;
-}
 
-/* Position the logo in the center using margin auto */
-.logo {
-    height: 50px;
-    margin: 0 auto;
-    display: block;
-}
-
-/* Ensure the menu button does not overlap with the logo */
-.main-nav {
-    display: flex;
-    justify-content: center;
-    width: 100%; /* Ensure it takes the full width */
-    margin-top: 10px;
-}
-
-.menu-button {
-    background-color: #6b4f1d;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* Adjust layout on larger screens */
-@media (min-width: 1024px) {
-    .header-container {
-        justify-content: space-between; /* Ensures elements are spaced out */
-    }
-
-    .header-left,
-    .header-right {
-        flex: 1; /* Take up remaining space */
-    }
-
-    .logo {
-        position: relative;
-        transform: translateX(-50%); /* Keep the logo centered */
-        left: 50%;
-    }
-
-    .main-nav {
-        margin-top: 0;
-        justify-content: flex-start; /* Align the menu button to the left */
-    }
-
-    .menu-button {
-        margin-left: 50%; /* Ensure it's placed correctly relative to the logo */
-        transform: translateX(-50%);
-    }
-}
-
-
-
-.header-left {
-    flex: 1;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-}
-
-/* Cart Icon with Item Count */
-.cart-icon {
-    position: relative;
-}
-
-#cart-count {
-    background-color: #6b4f1d;
-    color: white;
-    border-radius: 50%;
-    padding: 3px 8px;
-    font-size: 14px;
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    display: inline-block;
-}
-
-/* Other existing styles remain unchanged */
-
-
-/* General Styles */
-.hidden {
-    display: none;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-}
-
-
-.contact-info {
-    font-size: 14px;
-    color: #555;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-}
-
-.contact-button {
-    background-color: #6b4f1d;
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 20px;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 14px;
-}
-
-.cart-icon img {
-    height: 24px;
-}
-
-
-
-/* Menu Section */
-.menu-section {
-    padding: 30px;
-}
-
-.search-sort-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-.search-input {
-    padding: 10px;
-    width: 100%;
-    max-width: 60%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-.sort-select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
+/* Product Grid and Cards */
 .product-grid {
     display: flex;
     justify-content: space-around;
@@ -259,6 +168,7 @@ body {
     margin-bottom: 15px;
 }
 
+/* Quantity Selector */
 .quantity-selector {
     display: flex;
     justify-content: center;
@@ -356,7 +266,8 @@ footer {
         max-width: 100%;
     }
 
-    .search-input, .sort-select {
+    .search-input,
+    .sort-select {
         width: 100%;
     }
 
@@ -381,7 +292,8 @@ footer {
         max-width: 300px;
     }
 
-    .search-input, .sort-select {
+    .search-input,
+    .sort-select {
         width: 48%;
     }
 }
@@ -396,7 +308,8 @@ footer {
         width: 300px;
     }
 
-    .search-input, .sort-select {
+    .search-input,
+    .sort-select {
         width: 30%;
     }
 }
