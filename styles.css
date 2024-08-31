@@ -96,8 +96,9 @@ input[type="number"] {
 }
 
 .header-right {
-    display: 1;
-    /*align-items: center; */
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 /* Cart Icon with Item Count */
