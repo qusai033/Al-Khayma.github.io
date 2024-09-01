@@ -51,13 +51,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 itemElement.innerHTML = `
                     <img src="${item.imageUrl}" alt="${item.productName}" style="width: 50px; height: 50px;">
                     ${item.quantity}x ${item.productName} for ${item.people} people - $${totalItemPrice.toFixed(2)} total
+                    ${item.separatePlates ? ' (Separate Plates)' : ''}
                     <div class="quantity-controls">
                         <button class="btn-decrease">-</button>
                         <input type="text" value="${item.quantity}" readonly>
                         <button class="btn-increase">+</button>
                     </div>
                     <button class="btn-remove">Remove</button>
-                    ${item.separatePlates ? ' (Separate Plates)' : ''}
                 `;
                 cartContainer.appendChild(itemElement);
     
