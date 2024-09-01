@@ -37,7 +37,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         console.log('Loaded cart:', cart);
-    
+
+        let subtotal = 0; // Initialize subtotal to 0
+
         if (cart.length === 0) {
             cartContainer.textContent = 'Your cart is empty.';
         } else {
@@ -62,6 +64,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 itemElement.querySelector('.btn-remove').addEventListener('click', () => removeItem(index));
             });
         }
+        
+        // Calculate taxes and total based on subtotal
+        const taxes = subtotal * 0.3;
+        const total = subtotal + taxes;
+    
+        // Update the display of subtotal, taxes, and total
+        document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+        document.getElementById('taxes').textContent = `$${taxes.toFixed(2)}`;
+        document.getElementById('total').textContent = `$${total.toFixed(2)}`;
     }
 
 
