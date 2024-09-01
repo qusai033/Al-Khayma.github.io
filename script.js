@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();  // Update cart count after adding item
         alert("Item added to cart!");
     }
 
@@ -96,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         localStorage.setItem('cart', JSON.stringify(cart));
         refreshCart();  // Reload cart display
+        updateCartCount();  // Update cart count after changing quantity
     }
 
 
@@ -104,7 +106,20 @@ document.addEventListener("DOMContentLoaded", function() {
         cart.splice(index, 1);
         localStorage.setItem('cart', JSON.stringify(cart));
         refreshCart();
+        updateCartCount();  // Update cart count after changing quantity
     }
+
+
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let totalCount = 0;
+        cart.forEach(item => {
+            totalCount += item.quantity;
+        });
+        document.getElementById('cart-count').textContent = totalCount;
+    }
+
+    
 
     document.querySelectorAll('.minus-btn, .plus-btn').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -134,4 +149,5 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     refreshCart();
+    updateCartCount();  // Update cart count after changing quantity
 });
