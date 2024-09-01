@@ -43,16 +43,44 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    
+    const updatePrice = function(productCard) {
+        const peopleSelect = productCard.querySelector('.people-select');
+        const quantityInput = productCard.querySelector('.quantity-input');
+        
+        const basePrice = parseFloat(peopleSelect.selectedOptions[0].dataset.price);
+        const quantity = parseInt(quantityInput.value, 10);
+        
+        const totalPrice = basePrice * quantity;
+        productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
+    };
+
+    // Update price when the number of people changes
+    document.querySelectorAll('.people-select').forEach(select => {
+        select.addEventListener('change', function() {
+            const productCard = this.closest('.product-card');
+            updatePrice(productCard);
+        });
+    });
+
+    // Update price when the quantity changes
+    document.querySelectorAll('.quantity-input').forEach(input => {
+        input.addEventListener('input', function() {
+            const productCard = this.closest('.product-card');
+            updatePrice(productCard);
+        });
+    });
+
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
-            const quantity = productCard.querySelector('input[type="number"]').value;
-            const people = productCard.querySelector('#people').value;
+            const quantity = productCard.querySelector('.quantity-input').value;
+            const people = productCard.querySelector('.people-select').value;
             const separatePlates = productCard.querySelector('#separate-plates').checked;
             const price = productCard.querySelector('.price').textContent;
 
             // Handle the cart addition logic here
-            console.log(`Added ${quantity} items for ${people} people at $${price} each to the cart.`);
+            console.log(`Added ${quantity} items for ${people} people at $${price} total to the cart.`);
             if (separatePlates) {
                 console.log('Serve in separate plates: Yes');
             }
