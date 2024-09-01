@@ -1,74 +1,37 @@
-
 document.addEventListener("DOMContentLoaded", function() {
-    const minusBtns = document.querySelectorAll('.minus-btn');
-    const plusBtns = document.querySelectorAll('.plus-btn');
-
-    minusBtns.forEach(btn => {
+    // Handle minus and plus buttons for quantity adjustments
+    document.querySelectorAll('.minus-btn, .plus-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            const input = this.nextElementSibling;
+            const input = btn.classList.contains('minus-btn') ? btn.nextElementSibling : btn.previousElementSibling;
             let value = parseInt(input.value, 10);
-            if (value > 1) {
+            if (btn.classList.contains('minus-btn') && value > 1) {
                 value--;
-                input.value = value;
-                input.dispatchEvent(new Event('input')); // Trigger input event
+            } else if (btn.classList.contains('plus-btn')) {
+                value++;
             }
-        });
-    });
-
-    plusBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const input = this.previousElementSibling;
-            let value = parseInt(input.value, 10);
-            value++;
             input.value = value;
-            input.dispatchEvent(new Event('input')); // Trigger input event
+            updatePrice(input.closest('.product-card'));
         });
     });
 
-    inputs.forEach(input => {
-        input.addEventListener('input', function() {
-            // Add any additional functionality needed when input changes
-            console.log(`Quantity updated to: ${this.value}`);
-        });
-    });
-
-
-    peopleSelects.forEach(select => {
-        select.addEventListener('change', function() {
-            const productCard = this.closest('.product-card');
-            const selectedPrice = parseFloat(this.selectedOptions[0].dataset.price);
-            productCard.querySelector('.price').textContent = selectedPrice.toFixed(2);
-        });
-    });
-
-    
-    const updatePrice = function(productCard) {
-        const peopleSelect = productCard.querySelector('.people-select');
-        const quantityInput = productCard.querySelector('.quantity-input');
-        
-        const basePrice = parseFloat(peopleSelect.selectedOptions[0].dataset.price);
-        const quantity = parseInt(quantityInput.value, 10);
-        
-        const totalPrice = basePrice * quantity;
-        productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
-    };
-
-    // Update price when the number of people changes
+    // Handle changes in the number of people
     document.querySelectorAll('.people-select').forEach(select => {
         select.addEventListener('change', function() {
-            const productCard = this.closest('.product-card');
-            updatePrice(productCard);
+            updatePrice(this.closest('.product-card'));
         });
     });
 
-    // Update price when the quantity changes
-    document.querySelectorAll('.quantity-input').forEach(input => {
-        input.addEventListener('input', function() {
-            const productCard = this.closest('.product-card');
-            updatePrice(productCard);
-        });
-    });
+    // Function to update price based on quantity and number of people
+    function updatePrice(productCard) {
+        const peopleSelect = productCard.querySelector('.people-select');
+        const quantityInput = productCard.querySelector('.quantity-input');
+        const basePrice = parseFloat(peopleSelect.selectedOptions[0].dataset.price);
+        const quantity = parseInt(quantityInput.value, 10);
+        const totalPrice = basePrice * quantity;
+        productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
+    }
 
+    // Handle adding items to the cart
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
@@ -77,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const separatePlates = productCard.querySelector('#separate-plates').checked;
             const price = productCard.querySelector('.price').textContent;
 
-            // Handle the cart addition logic here
             console.log(`Added ${quantity} items for ${people} people at $${price} total to the cart.`);
             if (separatePlates) {
                 console.log('Serve in separate plates: Yes');
@@ -85,4 +47,3 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-
