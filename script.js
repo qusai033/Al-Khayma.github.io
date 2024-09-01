@@ -14,18 +14,25 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Handle changes in the number of people
+    // Handle changes in the number of people, if applicable
     document.querySelectorAll('.people-select').forEach(select => {
         select.addEventListener('change', function() {
             updatePrice(this.closest('.product-card'));
         });
     });
 
-    // Function to update price based on quantity and number of people
+    // Function to update price based on quantity and number of people or base price
     function updatePrice(productCard) {
         const peopleSelect = productCard.querySelector('.people-select');
         const quantityInput = productCard.querySelector('.quantity-input');
-        const basePrice = parseFloat(peopleSelect.selectedOptions[0].dataset.price);
+        let basePrice;
+
+        if (peopleSelect) {
+            basePrice = parseFloat(peopleSelect.selectedOptions[0].dataset.price);
+        } else {
+            basePrice = parseFloat(productCard.querySelector('.price').dataset.priceBase);
+        }
+
         const quantity = parseInt(quantityInput.value, 10);
         const totalPrice = basePrice * quantity;
         productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
@@ -36,8 +43,8 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
             const quantity = productCard.querySelector('.quantity-input').value;
-            const people = productCard.querySelector('.people-select').value;
-            const separatePlates = productCard.querySelector('#separate-plates').checked;
+            const people = peopleSelect ? productCard.querySelector('.people-select').value : "N/A";
+            const separatePlates = productCard.querySelector('#separate-plates') ? productCard.querySelector('#separate-plates').checked : false;
             const price = productCard.querySelector('.price').textContent;
 
             console.log(`Added ${quantity} items for ${people} people at $${price} total to the cart.`);
