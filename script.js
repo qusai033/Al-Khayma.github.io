@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const inputs = document.querySelectorAll('.quantity-selector input[type="number"]');
     const peopleSelects = document.querySelectorAll('.people-select');
 
-
     minusBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const input = this.nextElementSibling;
@@ -39,11 +38,8 @@ document.addEventListener("DOMContentLoaded", function() {
     peopleSelects.forEach(select => {
         select.addEventListener('change', function() {
             const productCard = this.closest('.product-card');
-            const basePrice = parseFloat(productCard.querySelector('.price').dataset.priceBase);
-            const multiplier = parseFloat(this.selectedOptions[0].dataset.priceMultiplier);
-            const newPrice = basePrice * multiplier;
-
-            productCard.querySelector('.price').textContent = newPrice.toFixed(2);
+            const selectedPrice = parseFloat(this.selectedOptions[0].dataset.price);
+            productCard.querySelector('.price').textContent = selectedPrice.toFixed(2);
         });
     });
 
