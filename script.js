@@ -37,25 +37,27 @@ document.addEventListener("DOMContentLoaded", function() {
     
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         console.log('Loaded cart:', cart);
-
-        let subtotal = 0; // Initialize subtotal to 0
-
+    
+        let subtotal = 0;
+    
         if (cart.length === 0) {
             cartContainer.textContent = 'Your cart is empty.';
         } else {
             cart.forEach((item, index) => {
+                const totalItemPrice = item.price * item.quantity;
+                subtotal += totalItemPrice;
+    
                 const itemElement = document.createElement('div');
-                itemElement.classList.add('cart-item'); // Add a class for potential CSS styling
                 itemElement.innerHTML = `
                     <img src="${item.imageUrl}" alt="${item.productName}" style="width: 50px; height: 50px;">
-                    <span>${item.quantity}x ${item.productName} for ${item.people} people - $${(item.price * item.quantity).toFixed(2)} total</span>
-                    ${item.separatePlates ? ' (Separate Plates)' : ''}
+                    ${item.quantity}x ${item.productName} for ${item.people} people - $${totalItemPrice.toFixed(2)} total
                     <div class="quantity-controls">
                         <button class="btn-decrease">-</button>
                         <input type="text" value="${item.quantity}" readonly>
                         <button class="btn-increase">+</button>
                     </div>
                     <button class="btn-remove">Remove</button>
+                    ${item.separatePlates ? ' (Separate Plates)' : ''}
                 `;
                 cartContainer.appendChild(itemElement);
     
@@ -64,16 +66,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 itemElement.querySelector('.btn-remove').addEventListener('click', () => removeItem(index));
             });
         }
-        
-        // Calculate taxes and total based on subtotal
+    
+        // Calculate taxes and total
         const taxes = subtotal * 0.3;
         const total = subtotal + taxes;
     
-        // Update the display of subtotal, taxes, and total
+        // Update the subtotal, taxes, and total display
         document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
         document.getElementById('taxes').textContent = `$${taxes.toFixed(2)}`;
         document.getElementById('total').textContent = `$${total.toFixed(2)}`;
     }
+
 
 
 
