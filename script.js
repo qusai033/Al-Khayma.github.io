@@ -43,14 +43,30 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
             const quantity = productCard.querySelector('.quantity-input').value;
-            const people = peopleSelect ? productCard.querySelector('.people-select').value : "N/A";
+            const people = productCard.querySelector('.people-select') ? productCard.querySelector('.people-select').value : 'N/A';
             const separatePlates = productCard.querySelector('#separate-plates') ? productCard.querySelector('#separate-plates').checked : false;
             const price = productCard.querySelector('.price').textContent;
-
-            console.log(`Added ${quantity} items for ${people} people at $${price} total to the cart.`);
-            if (separatePlates) {
-                console.log('Serve in separate plates: Yes');
-            }
+    
+            console.log(`Attempting to add ${quantity} items for ${people} people at $${price} total to the cart.`);
+            console.log(`Separate plates: ${separatePlates}`);
+    
+            // Simulate adding to cart
+            addToCart(productCard, quantity, people, price, separatePlates);
         });
     });
+    
+    function addToCart(productCard, quantity, people, price, separatePlates) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let item = {
+            productName: productCard.querySelector('h3').textContent,
+            quantity: parseInt(quantity),
+            people: parseInt(people),
+            price: parseFloat(price),
+            separatePlates: separatePlates
+        };
+    
+        cart.push(item);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert("Item added to cart!");
+    }
 });
