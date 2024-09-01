@@ -5,6 +5,33 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+
+.item-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.item-text {
+    margin-left: 10px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+}
+
+.btn-remove {
+    margin-left: 20px; /* Space between quantity controls and remove button */
+}
+
+
+
 .cart-item {
     display: flex;
     align-items: center;
@@ -26,14 +53,7 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 10px; /* Adjust size for better readability */
 }
 
-.quantity-controls {
-    display: flex;
-    align-items: center;
-}
 
-.btn-remove {
-    margin-left: auto; /* Pushes the remove button to the far right */
-}
 
 .btn-decrease, .btn-increase {
     margin: 0 5px;
