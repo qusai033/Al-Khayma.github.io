@@ -1,4 +1,24 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+
+    const cartContainer = document.getElementById('cart-items');
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (cartItems.length === 0) {
+        cartContainer.textContent = 'Your cart is empty.';
+    } else {
+        cartItems.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.textContent = `${item.quantity}x ${item.productName} for ${item.people} people - $${item.price.toFixed(2)} each`;
+            if (item.separatePlates) {
+                itemElement.textContent += ' (Separate Plates)';
+            }
+            cartContainer.appendChild(itemElement);
+        });
+    }
+
+
+    
     // Handle minus and plus buttons for quantity adjustments
     document.querySelectorAll('.minus-btn, .plus-btn').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -65,7 +85,14 @@ document.addEventListener("DOMContentLoaded", function() {
             separatePlates: separatePlates
         };
     
-        cart.push(item);
+        // Check if the item already exists in the cart
+        const existingItem = cart.find(x => x.productName === item.productName && x.people === item.people && x.separatePlates === item.separatePlates);
+        if (existingItem) {
+            existingItem.quantity += item.quantity;  // Increment the quantity
+        } else {
+            cart.push(item);  // Add new item to cart
+        }
+    
         localStorage.setItem('cart', JSON.stringify(cart));
         alert("Item added to cart!");
     }
