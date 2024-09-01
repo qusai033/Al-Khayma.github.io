@@ -43,22 +43,30 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             cart.forEach((item, index) => {
                 const totalItemPrice = item.price * item.quantity;
-                subtotal += totalItemPrice;
-    
+                subtotal += totalItemPrice;  // Keep track of the subtotal
+            
                 const itemElement = document.createElement('div');
+                itemElement.classList.add('cart-item'); // Add a class for potential CSS styling
                 itemElement.innerHTML = `
-                    <img src="${item.imageUrl}" alt="${item.productName}" style="width: 50px; height: 50px;">
-                    <span>${item.quantity}x ${item.productName} for ${item.people} people - $${totalItemPrice.toFixed(2)} total</span>
-                    ${item.separatePlates ? ' (Separate Plates)' : ''}
-                    <div class="quantity-controls">
-                        <button class="btn-decrease">-</button>
-                        <input type="text" value="${item.quantity}" readonly>
-                        <button class="btn-increase">+</button>
+                    <div class="item-info">
+                        <img src="${item.imageUrl}" alt="${item.productName}" style="width: 50px; height: 50px;">
+                        <div class="item-text">
+                            ${item.quantity}x ${item.productName} for ${item.people} people - $${totalItemPrice.toFixed(2)} total
+                            ${item.separatePlates ? ' (Separate Plates)' : ''}
+                        </div>
                     </div>
-                    <button class="btn-remove">Remove</button>
+                    <div class="item-controls">
+                        <div class="quantity-controls">
+                            <button class="btn-decrease">-</button>
+                            <input type="text" value="${item.quantity}" readonly>
+                            <button class="btn-increase">+</button>
+                        </div>
+                        <button class="btn-remove">Remove</button>
+                    </div>
                 `;
                 cartContainer.appendChild(itemElement);
-    
+            
+                // Event listeners for quantity changes and item removal
                 itemElement.querySelector('.btn-decrease').addEventListener('click', () => changeQuantity(index, -1));
                 itemElement.querySelector('.btn-increase').addEventListener('click', () => changeQuantity(index, 1));
                 itemElement.querySelector('.btn-remove').addEventListener('click', () => removeItem(index));
