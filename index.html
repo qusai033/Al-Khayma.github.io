@@ -59,7 +59,7 @@
             <div class="product-card">
                 <img src="dish1.png" alt="Dish Image">
                 <h3>Dish Name</h3>
-                <p>$70.00</p>
+                <p>$<span class="price" data-price-base="20">20.00</span></p>
                 <div class="quantity-selector">
                     <button class="minus-btn">-</button>
                     <input type="number" value="1" min="1">
@@ -67,13 +67,13 @@
                 </div>
                 <!-- Number of People Dropdown -->
                 <label for="people">Number of People:</label>
-                <select id="people" name="people">
-                    <option value="2">2</option>
-                    <option value="4">4</option>
-                    <option value="6">6</option>
-                    <option value="8">8</option>
-                    <option value="10">10</option>
-                    <option value="12">12</option>
+                <select id="people" name="people" class="people-select">
+                    <option value="2" data-price-multiplier="1">2</option>
+                    <option value="4" data-price-multiplier="2">4</option>
+                    <option value="6" data-price-multiplier="3">6</option>
+                    <option value="8" data-price-multiplier="4">8</option>
+                    <option value="10" data-price-multiplier="5">10</option>
+                    <option value="12" data-price-multiplier="6">12</option>
                 </select>
                 <!-- Separate Plates Checkbox -->
                 <div>
