@@ -167,8 +167,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function refreshCart() {
         const cartContainer = document.getElementById('cart-items');
-        cartContainer.innerHTML = '';
+        cartContainer.innerHTML = '';  // Clear existing cart display
+    
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        console.log('Loaded cart:', cart);
+    
         if (cart.length === 0) {
             cartContainer.textContent = 'Your cart is empty.';
         } else {
@@ -176,14 +179,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 const itemElement = document.createElement('div');
                 itemElement.innerHTML = `
                     <img src="${item.imageUrl}" alt="${item.productName}" style="width: 50px; height: 50px;">
-                    ${item.quantity}x ${item.productName} for ${item.people} people - $${item.price.toFixed(2)} each
+                    ${item.quantity}x ${item.productName} for ${item.people} people - $${(item.price * item.quantity).toFixed(2)} total
                     <button class="btn-decrease">-</button>
                     <button class="btn-increase">+</button>
                     <button class="btn-remove">Remove</button>
                     ${item.separatePlates ? ' (Separate Plates)' : ''}
                 `;
                 cartContainer.appendChild(itemElement);
-
+    
                 itemElement.querySelector('.btn-decrease').addEventListener('click', () => changeQuantity(index, -1));
                 itemElement.querySelector('.btn-increase').addEventListener('click', () => changeQuantity(index, 1));
                 itemElement.querySelector('.btn-remove').addEventListener('click', () => removeItem(index));
@@ -191,16 +194,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+
     function changeQuantity(index, delta) {
         let cart = JSON.parse(localStorage.getItem('cart'));
-        if ((cart[index].quantity + delta) > 0) {
+        if (cart[index].quantity + delta > 0) {
             cart[index].quantity += delta;
+            cart[index].totalPrice = cart[index].price * cart[index].quantity;  // Recalculate total price
         } else {
-            cart.splice(index, 1);
+            cart.splice(index, 1);  // Remove the item if quantity goes to zero
         }
         localStorage.setItem('cart', JSON.stringify(cart));
-        refreshCart();
+        refreshCart();  // Reload cart display
     }
+
 
     function removeItem(index) {
         let cart = JSON.parse(localStorage.getItem('cart'));
