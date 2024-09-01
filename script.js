@@ -78,22 +78,6 @@ document.addEventListener("DOMContentLoaded", function() {
         alert("Item added to cart!");
     }
 
-    
-    const cartContainer = document.getElementById('cart-items');
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-
-    if (cartItems.length === 0) {
-        cartContainer.textContent = 'Your cart is empty.';
-    } else {
-        cartItems.forEach(item => {
-            const itemElement = document.createElement('div');
-            itemElement.textContent = `${item.quantity}x ${item.productName} for ${item.people} people - $${item.price.toFixed(2)} each`;
-            if (item.separatePlates) {
-                itemElement.textContent += ' (Separate Plates)';
-            }
-            cartContainer.appendChild(itemElement);
-        });
-    }
 
 
 
