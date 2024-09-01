@@ -5,6 +5,29 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cart-item img {
+    margin-right: 10px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+}
+
+.btn-remove {
+    margin-left: auto; /* Pushes the remove button to the far right */
+}
+
+.btn-decrease, .btn-increase {
+    margin: 0 5px;
+}
 
 .people-select {
     margin-top: 10px;
