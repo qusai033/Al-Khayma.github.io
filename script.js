@@ -2,8 +2,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const minusBtns = document.querySelectorAll('.minus-btn');
     const plusBtns = document.querySelectorAll('.plus-btn');
-    const inputs = document.querySelectorAll('.quantity-selector input[type="number"]');
-    const peopleSelects = document.querySelectorAll('.people-select');
 
     minusBtns.forEach(btn => {
         btn.addEventListener('click', function() {
