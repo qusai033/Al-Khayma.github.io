@@ -95,4 +95,47 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+
+
+
+    function changeQuantity(index, delta) {
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        if (cart[index].quantity + delta > 0) {
+            cart[index].quantity += delta;
+        } else {
+            // Optionally remove the item if quantity goes to zero
+            cart.splice(index, 1);
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        refreshCart();  // Reload cart display
+    }
+    
+    function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        cart.splice(index, 1);  // Remove the item at the specified index
+        localStorage.setItem('cart', JSON.stringify(cart));
+        refreshCart();  // Reload cart display
+    }
+    
+    function refreshCart() {
+        const cartContainer = document.getElementById('cart-items');
+        cartContainer.innerHTML = ''; // Clear current contents
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cartItems.length === 0) {
+            cartContainer.textContent = 'Your cart is empty.';
+        } else {
+            cartItems.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.innerHTML = `
+                    <img src="${item.imageUrl}" alt="${item.productName}" style="width: 50px; height: 50px;">
+                    <span>${item.quantity}x ${item.productName} for ${item.people} people - $${item.price.toFixed(2)} each</span>
+                    <button onclick="changeQuantity(${index}, -1)">-</button>
+                    <button onclick="changeQuantity(${index}, 1)">+</button>
+                    <button onclick="removeItem(${index})">Remove</button>
+                    ${item.separatePlates ? ' (Separate Plates)' : ''}
+                `;
+                cartContainer.appendChild(itemElement);
+            });
+        }
+    }
 });
