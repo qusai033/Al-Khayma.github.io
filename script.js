@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const itemElement = document.createElement('div');
                 itemElement.innerHTML = `
                     <img src="${item.imageUrl}" alt="${item.productName}" style="width: 50px; height: 50px;">
-                    ${item.quantity}x ${item.productName} for ${item.people} people - ${totalItemPrice.toFixed(2)} total
+                    <span>${item.quantity}x ${item.productName} for ${item.people} people - $${totalItemPrice.toFixed(2)} total</span>
                     ${item.separatePlates ? ' (Separate Plates)' : ''}
                     <div class="quantity-controls">
                         <button class="btn-decrease">-</button>
