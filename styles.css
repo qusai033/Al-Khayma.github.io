@@ -5,6 +5,18 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+.checkbox-container {
+    display: flex;
+    align-items: center; /* This ensures vertical alignment is centered */
+    margin-top: 10px; /* Add space above the checkbox line */
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 10px; /* Space between the checkbox and the label text */
+}
+
+
+
 #address {
     height: 80px; /* Adjust height as needed */
     resize: none; /* Prevent resizing if it's a textarea */
