@@ -5,6 +5,11 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+#address {
+    height: 80px; /* Adjust height as needed */
+    resize: none; /* Prevent resizing if it's a textarea */
+}
+
 
 .item-info {
     display: flex;
