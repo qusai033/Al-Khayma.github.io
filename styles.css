@@ -5,6 +5,22 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+.checkbox-container {
+    display: flex;
+    align-items: center; /* Aligns items vertically in the center */
+    justify-content: flex-start; /* Aligns items to the left */
+}
+@media (max-width: 768px) {
+    .checkbox-container {
+        justify-content: flex-start; /* Keeps items aligned to the left on all devices */
+    }
+}
+.checkbox-container input[type="checkbox"] {
+    margin-right: 10px; /* Space between the checkbox and the label */
+    width: 20px;  /* Optional: Set a specific size for the checkbox */
+    height: 20px; /* Optional: Set a specific size for the checkbox */
+}
+
 
 .item-info {
     display: flex;
