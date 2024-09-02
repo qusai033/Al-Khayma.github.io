@@ -9,22 +9,19 @@ input[type="number"]::-webkit-inner-spin-button {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
-    padding: 0;
+    width: 100%; /* Ensure the container takes the full width */
 }
-
 .checkbox-container input[type="checkbox"] {
-    flex: none;  // Prevent flexbox from resizing it
-    width: 20px;
-    height: 20px;
-    margin: 0 10px 0 0;  // Adjust spacing to the right of the checkbox
+    width: 16px;  // Width of the checkbox
+    height: 16px; // Height of the checkbox
+    margin-right: 10px; // Space between the checkbox and the label
 }
-
-.checkbox-container label {
-    flex-grow: 1;
-    margin: 0;  // Ensure no additional margin is affecting the layout
+.form-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
 }
-
 
 
 
