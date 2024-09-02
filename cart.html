@@ -35,7 +35,7 @@
             <h3>Total: <span id="total">0.00</span></h3>
         </div>
     
-        <form id="order-form" method="POST">
+        <form action="submit_order.php" id="order-form" method="POST">
             <input type="text" id="name" name="name" placeholder="Your Name" required>
             <input type="email" id="email" name="email" placeholder="Your Email" required>
             <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
@@ -53,8 +53,9 @@
             <input type="date" id="date" name="date" placeholder="Delivery Date" required>
             
             <input type="hidden" id="order-summary" name="order-summary">
-            <button type="submit" class="checkout-button">Submit</button>
+            <button type="submit" class="checkout-button">Submit Order</button>
         </form>
+        
         <a href="index.html" id="continue-shopping" class="continue-shopping">Continue shopping</a>
     </section>
 
