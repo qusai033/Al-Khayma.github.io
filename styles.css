@@ -5,23 +5,27 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%; /* Ensure the container takes the full width */
-}
-.checkbox-container input[type="checkbox"] {
-    width: 16px;  // Width of the checkbox
-    height: 16px; // Height of the checkbox
-    margin-right: 10px; // Space between the checkbox and the label
-}
 .form-row {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
+    align-items: center; /* Centers items vertically */
+    justify-content: flex-start; /* Aligns items to the start of the row */
+    width: 100%; /* Takes full width to avoid unwanted text wrapping */
 }
+
+.checkbox-container {
+    flex-direction: row; /* Ensures label and checkbox are in a row */
+    align-items: center; /* Aligns checkbox and label vertically */
+    justify-content: flex-start; /* Ensures they align to the left */
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: -560px; /* Space between the checkbox and the label */
+}
+
+.checkbox-container label {
+    white-space: nowrap; /* Prevents label from wrapping */
+}
+
 
 
 
