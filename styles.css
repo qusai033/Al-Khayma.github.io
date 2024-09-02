@@ -7,12 +7,14 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .checkbox-container {
     display: flex;
-    align-items: center; /* This ensures vertical alignment is centered */
-    margin-top: 10px; /* Add space above the checkbox line */
+    align-items: center; /* Ensures vertical alignment is centered */
+    margin-top: 10px; /* Adds space above the checkbox line */
+    white-space: nowrap; /* Prevents the label from wrapping */
 }
 
 .checkbox-container input[type="checkbox"] {
     margin-right: 10px; /* Space between the checkbox and the label text */
+    margin-top: 0; /* Aligns checkbox better with the text if needed */
 }
 
 
@@ -151,7 +153,7 @@ h2 {
 
 #order-form textarea {
     resize: vertical;
-    height: 100px;
+    height: 16px;
 }
 
 #order-form button[type="submit"] {
