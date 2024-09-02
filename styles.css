@@ -5,32 +5,6 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-/* Add this at the top of your CSS to reset some default styles */
-* {
-    box-sizing: border-box;
-}
-
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.checkbox-container input[type="checkbox"],
-.checkbox-container label {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0;
-    padding: 0;
-}
-
-.checkbox-container input[type="checkbox"] {
-    margin-right: 10px;
-    width: 16px;  /* Explicit size for consistency */
-    height: 16px; /* Explicit size for consistency */
-}
-
-
 
 .item-info {
     display: flex;
