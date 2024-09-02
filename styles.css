@@ -5,21 +5,31 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+/* Reset any potential margin or padding influence from parent elements */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .checkbox-container {
     display: flex;
-    align-items: center; /* Aligns items vertically in the center */
-    justify-content: flex-start; /* Aligns items to the left */
+    align-items: center;
+    justify-content: flex-start; /* Force left alignment */
+    width: 100%; /* Ensure the container spans the full width of its parent */
 }
-@media (max-width: 768px) {
-    .checkbox-container {
-        justify-content: flex-start; /* Keeps items aligned to the left on all devices */
-    }
-}
+
 .checkbox-container input[type="checkbox"] {
-    margin-right: 10px; /* Space between the checkbox and the label */
-    width: 20px;  /* Optional: Set a specific size for the checkbox */
-    height: 20px; /* Optional: Set a specific size for the checkbox */
+    margin-right: 10px; /* Ensure space between the checkbox and the label */
+    width: 20px; /* Explicitly define width */
+    height: 20px; /* Explicitly define height */
 }
+
+.checkbox-container label {
+    display: inline-block; /* Ensures the label aligns correctly with the checkbox */
+    vertical-align: middle; /* Vertical alignment with the checkbox */
+}
+
 
 
 .item-info {
