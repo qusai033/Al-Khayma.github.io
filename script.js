@@ -119,7 +119,14 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('cart-count').textContent = totalCount;
     }
 
-    
+    document.getElementById('order-form').addEventListener('submit', function() {
+        var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        var orderSummary = cartItems.map(item => {
+            return `${item.quantity}x ${item.productName} for ${item.people} people - $${item.price} each; Separate Plates: ${item.separatePlates ? 'Yes' : 'No'}`;
+        }).join('\n');
+        document.getElementById('order-summary').value = orderSummary;
+    });
+
 
     document.querySelectorAll('.minus-btn, .plus-btn').forEach(btn => {
         btn.addEventListener('click', function() {
