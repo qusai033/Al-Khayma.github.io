@@ -11,14 +11,15 @@ function updateCartCount() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    console.log("Document loaded.");
     updateCartCount();
-
-    // Grab the order form and attach a submit event listener
     var form = document.getElementById('order-form');
     if (form) {
+        console.log("Form found, attaching submit event listener.");
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting traditionally
-
+            console.log("Form submission triggered.");
+            event.preventDefault();
+            
             var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
             var orderSummary = "";
             var orderTotal = 0;
@@ -34,9 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('order-summary').value = orderSummary;
             document.getElementById('order-total').value = `$${orderTotal.toFixed(2)}`;
             document.getElementById('deposit-amount').value = `$${depositAmount.toFixed(2)}`;
-
-            // Optionally, submit the form here if you're using AJAX or similar
-            // Or, you could simply let the form submit normally if that's your workflow
         });
     } else {
         console.error("Order form not found on this page.");
