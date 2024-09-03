@@ -10,30 +10,37 @@ function updateCartCount() {
     document.getElementById('cart-count').textContent = totalCount;
 }
 
-document.getElementById('order-form').addEventListener('submit', function(event) {
-    updateCartCount();
-    // Extract and process cart items to prepare submission data
-    var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    var orderSummary = "";
-    var orderTotal = 0;
+document.addEventListener("DOMContentLoaded", function() {
+    updateCartCount();  // Update cart count as soon as the page loads
 
-    cartItems.forEach(item => {
-        var itemTotal = item.quantity * item.price;
-        orderTotal += itemTotal;
-        orderSummary += `${item.quantity}x ${item.productName} for ${item.people} people - $${itemTotal.toFixed(2)} each; Separate Plates: ${item.separatePlates ? 'Yes' : 'No'}\n`;
-    });
+    var form = document.getElementById('order-form');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            // Extract and process cart items to prepare submission data
+            var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            var orderSummary = "";
+            var orderTotal = 0;
 
-    var depositAmount = orderTotal * 0.30;  // Calculate 30% deposit
+            cartItems.forEach(item => {
+                var itemTotal = item.quantity * item.price;
+                orderTotal += itemTotal;
+                orderSummary += `${item.quantity}x ${item.productName} for ${item.people} people - $${itemTotal.toFixed(2)} each; Separate Plates: ${item.separatePlates ? 'Yes' : 'No'}\n`;
+            });
 
-    // Set values in hidden inputs
-    document.getElementById('order-summary').value = orderSummary;
-    document.getElementById('order-total').value = `$${orderTotal.toFixed(2)}`;
-    document.getElementById('deposit-amount').value = `$${depositAmount.toFixed(2)}`;
+            var depositAmount = orderTotal * 0.30;  // Calculate 30% deposit
 
-    // Optionally, log the form submission event
-    console.log("Form submission processed, proceeding to submit.");
+            // Set values in hidden inputs
+            document.getElementById('order-summary').value = orderSummary;
+            document.getElementById('order-total').value = `$${orderTotal.toFixed(2)}`;
+            document.getElementById('deposit-amount').value = `$${depositAmount.toFixed(2)}`;
 
-    // To actually submit the form, comment out or remove the next line:
-    // event.preventDefault();
+            // Optionally, log the form submission event
+            console.log("Form submission processed, proceeding to submit.");
+
+            // To actually submit the form, comment out or remove the next line:
+            // event.preventDefault(); // Uncomment this line if you are testing and do not want to submit the form.
+        });
+    } else {
+        console.error("Order form not found on this page.");
+    }
 });
-
