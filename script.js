@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         document.getElementById('cart-count').textContent = totalCount;
     }
-/*
+
     document.getElementById('order-form').addEventListener('submit', function() {
         var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
         var orderSummary = cartItems.map(item => {
@@ -126,24 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }).join('\n');
         document.getElementById('order-summary').value = orderSummary;
     });
-*/
-    document.getElementById('order-form').addEventListener('submit', function() {
-        var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-        var orderSummary = "";
-        var orderTotal = 0;
-    
-        cartItems.forEach(item => {
-            var itemTotal = item.quantity * item.price;
-            orderTotal += itemTotal;
-            orderSummary += `${item.quantity}x ${item.productName} for ${item.people} people - $${itemTotal.toFixed(2)} each; Separate Plates: ${item.separatePlates ? 'Yes' : 'No'}\n`;
-        });
-    
-        var depositAmount = orderTotal * 0.30; // Calculate 30% deposit
-    
-        document.getElementById('order-summary').value = orderSummary;
-        document.getElementById('order-total').value = `$${orderTotal.toFixed(2)}`;
-        document.getElementById('deposit-amount').value = `$${depositAmount.toFixed(2)}`; // Set deposit amount in hidden input
-    });
+
 
 
 
