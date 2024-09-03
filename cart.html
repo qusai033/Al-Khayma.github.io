@@ -51,7 +51,9 @@
             
             <label for="date">Must order 2 days in advance:</label>
             <input type="date" id="date" name="date" placeholder="Delivery Date" required>
-            
+
+            <input type="hidden" id="order-total" name="order-total">
+            <input type="hidden" id="deposit-amount" name="deposit-amount">
             <input type="hidden" id="order-summary" name="order-summary">
             <button type="submit" class="checkout-button">Submit Order</button>
         </form>
