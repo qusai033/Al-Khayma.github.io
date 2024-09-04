@@ -41,9 +41,21 @@
         <div class="product-grid">
             <!-- Existing Catering Items -->
             <div class="product-card">
-                <img src="img1.png" alt="Tray of Rice">
+                <img src="img2.png" alt="Tray of Rice">
                 <h3>Tray of Rice</h3>
-                <p>$<span class="price" data-price-base="50">50.00</span></p>
+                <p>$<span class="price" data-price-base="40">40.00</span></p>
+                <div class="quantity-selector">
+                    <button class="minus-btn">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="plus-btn">+</button>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card">
+                <img src="img1.png" alt="Tray of Rice">
+                <h3>Half Tray of Rice</h3>
+                <p>$<span class="price" data-price-base="30">30.00</span></p>
                 <div class="quantity-selector">
                     <button class="minus-btn">-</button>
                     <input type="number" value="1" min="1" class="quantity-input">
@@ -84,6 +96,60 @@
                 <button class="add-to-cart">Add to Cart</button>
             </div>
 
+            <div class="product-card">
+                <img src="dish2.png" alt="Dish Image">
+                <h3>Jordanin Mansaf</h3>
+                <p>$<span class="price" data-price-base="150">150.00</span></p>
+                <div class="quantity-selector">
+                    <button class="minus-btn">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="plus-btn">+</button>
+                </div>
+                <!-- Number of People Dropdown with Exact Prices -->
+                <label for="people">Number of People:</label>
+                <select id="people" name="people" class="people-select">
+                    <option value="2" data-price="150">2</option>
+                    <option value="4" data-price="200">4</option>
+                    <option value="6" data-price="250">6</option>
+                    <option value="8" data-price="300">8</option>
+                    <option value="10" data-price="350">10</option>
+                    <option value="12" data-price="400">12</option>
+                </select>
+                <!-- Separate Plates Checkbox -->
+                <div>
+                    <input type="checkbox" id="separate-plates" name="separate-plates">
+                    <label for="separate-plates">Serve in Separate Plates</label>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+
+            <div class="product-card">
+                <img src="dish2.png" alt="Dish Image">
+                <h3>Syrian Mansaf</h3>
+                <p>$<span class="price" data-price-base="150">150.00</span></p>
+                <div class="quantity-selector">
+                    <button class="minus-btn">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="plus-btn">+</button>
+                </div>
+                <!-- Number of People Dropdown with Exact Prices -->
+                <label for="people">Number of People:</label>
+                <select id="people" name="people" class="people-select">
+                    <option value="2" data-price="150">2</option>
+                    <option value="4" data-price="200">4</option>
+                    <option value="6" data-price="250">6</option>
+                    <option value="8" data-price="300">8</option>
+                    <option value="10" data-price="350">10</option>
+                    <option value="12" data-price="400">12</option>
+                </select>
+                <!-- Separate Plates Checkbox -->
+                <div>
+                    <input type="checkbox" id="separate-plates" name="separate-plates">
+                    <label for="separate-plates">Serve in Separate Plates</label>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
             <!-- Add more dish items here -->
         </div>
     
