@@ -78,7 +78,7 @@
                     <img src="img3.png" alt="Waraq Anab">
                 </a>
                     <h3>Waraq Anab</h3>
-                    <p>$<span class="price" data-price-base="75">75.00</span></p>
+                    <p>$<span class="price" data-price-base="100">100.00</span></p>
 
                 
                 <div class="quantity-selector">
@@ -165,7 +165,7 @@
                     <img src="dish3.png" alt="Dish Image">
                 </a>
                     <h3>Syrian Mansaf</h3>
-                    <p>$<span class="price" data-price-base="150">150.00</span></p>
+                    <p>$<span class="price" data-price-base="150">100.00</span></p>
 
                 
                 <div class="quantity-selector">
@@ -176,11 +176,45 @@
                 <!-- Number of People Dropdown with Exact Prices -->
                 <label for="people">Number of People:</label>
                 <select id="people" name="people" class="people-select">
-                    <option value="2" data-price="150">2</option>
+                    <option value="2" data-price="100">2</option>
                     <option value="4" data-price="200">4</option>
-                    <option value="6" data-price="250">6</option>
-                    <option value="8" data-price="300">8</option>
-                    <option value="10" data-price="350">10</option>
+                    <option value="6" data-price="295">6</option>
+                    <option value="8" data-price="390">8</option>
+                    <option value="10" data-price="485">10</option>
+                    <option value="12" data-price="580">12</option>
+                </select>
+                <!-- Separate Plates Checkbox -->
+                <div>
+                    <input type="checkbox" id="separate-plates" name="separate-plates">
+                    <label for="separate-plates">Serve in Separate Plates</label>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+
+
+            <div class="product-card">
+
+                <a href="dish4.html"> <!-- Link to product detail page -->
+                    <img src="dish4.png" alt="Dish Image">
+                </a>
+                    <h3>Rice & Chicken</h3>
+                    <p>$<span class="price" data-price-base="150">75.00</span></p>
+
+                
+                <div class="quantity-selector">
+                    <button class="minus-btn">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="plus-btn">+</button>
+                </div>
+                <!-- Number of People Dropdown with Exact Prices -->
+                <label for="people">Number of People:</label>
+                <select id="people" name="people" class="people-select">
+                    <option value="2" data-price="70">2</option>
+                    <option value="4" data-price="140">4</option>
+                    <option value="6" data-price="200">6</option>
+                    <option value="8" data-price="260">8</option>
+                    <option value="10" data-price="335">10</option>
                     <option value="12" data-price="400">12</option>
                 </select>
                 <!-- Separate Plates Checkbox -->
