@@ -99,7 +99,8 @@ body {
 .quantity-selector input {
     width: 50px;
     text-align: center;
-    margin: 0 10px;
+    height: 20px;
+    margin: 0 5px;
 }
 
 .add-to-cart {
