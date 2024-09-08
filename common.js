@@ -5,8 +5,8 @@ function updateCartCount() {
     cart.forEach(item => {
         totalCount += item.quantity;
     });
-    console.log("Cart loaded from localStorage:", cart);  // Debugging info
-    console.log("Total count calculated:", totalCount);  // Debugging info
+    //console.log("Cart loaded from localStorage:", cart);  // Debugging info
+    //console.log("Total count calculated:", totalCount);  // Debugging info
     document.getElementById('cart-count').textContent = totalCount;
 }
 
@@ -35,12 +35,12 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('deposit-amount').value = `$${depositAmount.toFixed(2)}`;
 
             // Optionally, log the form submission event
-            console.log("Form submission processed, proceeding to submit.");
+            //console.log("Form submission processed, proceeding to submit.");
 
             // To actually submit the form, comment out or remove the next line:
             // event.preventDefault(); // Uncomment this line if you are testing and do not want to submit the form.
         });
     } else {
-        console.error("Order form not found on this page.");
+        //console.error("Order form not found on this page.");
     }
 });
