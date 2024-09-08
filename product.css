@@ -1,0 +1,46 @@
+.product-detail-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product-detail-container {
+    display: flex;
+    max-width: 1200px; /* Adjust based on your design preference */
+    align-items: start; /* Align items at the start of the container */
+    gap: 20px; /* Space between the image and the details */
+}
+
+.product-image img {
+    width: 100%; /* Full width of the container */
+    max-width: 600px; /* Maximum width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.product-info {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.quantity-selector input {
+    width: 50px;
+    text-align: center;
+    margin: 0 10px;
+}
+
+.add-to-cart {
+    background-color: #6b4f1d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
