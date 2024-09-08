@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();  // Update cart count after adding item
-        alert("Item added to cart!");
+        // alert("Item added to cart!");
     }
 
     function refreshCart() {
