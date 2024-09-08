@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rice and Chicken - Al-Khayma Online Restaurant</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html">
+                <img src="logo.png" alt="Logo" class="logo">
+            </a>
+            <div class="header-right">
+                <a href="cart.html" class="cart-icon" id="cart-button">
+                    <img src="cart.png" alt="Cart">
+                    <span id="cart-count">0</span> <!-- This span will show the number of items -->
+                </a>
+                <a href="tel:+15203607081" class="contact-button">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="product-grid">
+            <!-- Existing Catering Items -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="dish4.png" alt="Dish Image">
+            </div>
+
+            <div class="product-info">
+                <h3>Rice and Chicken</h3>
+                <p>Description of the product goes here, such as ingredients, nutritional information, or other details.</p>
+                <p>$<span class="price" data-price-base="70">70.00</span></p>
+                
+                <div class="quantity-selector">
+                    <button class="minus-btn">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="plus-btn">+</button>
+                </div>
+                <!-- Number of People Dropdown with Exact Prices -->
+                <label for="people">Number of People:</label>
+                <select id="people" name="people" class="people-select">
+                    <option value="2" data-price="70">2</option>
+                    <option value="4" data-price="140">4</option>
+                    <option value="6" data-price="200">6</option>
+                    <option value="8" data-price="260">8</option>
+                    <option value="10" data-price="335">10</option>
+                    <option value="12" data-price="400">12</option>
+                </select>
+                <!-- Separate Plates Checkbox -->
+                <div>
+                    <input type="checkbox" id="separate-plates" name="separate-plates">
+                    <label for="separate-plates">Serve in Separate Plates</label>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <footer>
+        <p>Contact Us: qusai4business@gmail.com | Follow us on Social Media</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="common.js"></script>
+
+</body>
+</html>
