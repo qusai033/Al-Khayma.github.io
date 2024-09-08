@@ -486,7 +486,7 @@ h2 {
 
 
 /* Large Desktops */
-@media (min-width: 1024px) {
+@media (min-width: ) {
     .product-grid {
         justify-content: flex-start;
     }
