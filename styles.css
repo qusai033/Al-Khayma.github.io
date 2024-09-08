@@ -19,7 +19,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .checkbox-container input[type="checkbox"] {
-    margin-right: -560px; /* Space between the checkbox and the label */
+    margin-right: -700px; /* Space between the checkbox and the label */
 }
 
 .checkbox-container label {
