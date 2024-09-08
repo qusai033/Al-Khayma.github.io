@@ -66,13 +66,13 @@ body {
     left: 50%;
     transform: translateX(-50%);
 }
-.product-detail-section {
+.product-grid {
     display: flex;
     justify-content: center;
     padding: 20px;
 }
 
-.product-detail-container {
+.product-card {
     display: flex;
     max-width: 1200px; /* Adjust based on your design preference */
     align-items: start; /* Align items at the start of the container */
