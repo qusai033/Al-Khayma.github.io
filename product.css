@@ -112,3 +112,404 @@ body {
     cursor: pointer;
     margin-top: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* Hide the spinners on number input */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form-row {
+    display: flex;
+    align-items: center; /* Centers items vertically */
+    justify-content: flex-start; /* Aligns items to the start of the row */
+    width: 100%; /* Takes full width to avoid unwanted text wrapping */
+}
+
+.checkbox-container {
+    flex-direction: row; /* Ensures label and checkbox are in a row */
+    align-items: center; /* Aligns checkbox and label vertically */
+    justify-content: flex-start; /* Ensures they align to the left */
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: -560px; /* Space between the checkbox and the label */
+}
+
+.checkbox-container label {
+    white-space: nowrap; /* Prevents label from wrapping */
+}
+
+
+
+
+.item-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.item-text {
+    margin-left: 10px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+}
+
+.btn-remove {
+    margin-left: 20px; /* Space between quantity controls and remove button */
+}
+
+
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cart-item img {
+    margin-right: 10px;
+}
+
+.quantity-controls input {
+    width: 50px; /* Adjust the width as needed */
+    text-align: center;
+}
+
+.quantity-controls button {
+    padding: 3px 9px; /* Ensures the buttons are not too large or small */
+    font-size: 10px; /* Adjust size for better readability */
+}
+
+
+
+.btn-decrease, .btn-increase {
+    margin: 0 5px;
+}
+
+.people-select {
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.price {
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+/* Styling the section titles */
+h2 {
+    font-size: 24px;
+    color: #6b4f1d;
+    margin-bottom: 15px;
+}
+
+
+/* Style for the number of people dropdown */
+#people {
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Style for the checkbox */
+#separate-plates {
+    margin-top: 10px;
+}
+
+/* General Styles */
+.hidden {
+    display: none;
+}
+
+/* Thank You Message */
+#thank-you-message h3 {
+    color: green;
+    text-align: center;
+}
+
+
+#order-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#order-form label {
+    font-weight: bold;
+}
+
+#order-form input, #order-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#order-form textarea {
+    resize: vertical;
+    height: 16px;
+}
+
+#order-form button[type="submit"] {
+    background-color: #6b4f1d;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.cart-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+
+
+
+.header-left {
+    flex: 1;
+}
+
+
+
+/* Cart Icon with Item Count */
+.cart-icon {
+    position: relative;
+}
+
+
+/* Other existing styles remain unchanged */
+
+
+/* General Styles */
+.hidden {
+    display: none;
+}
+
+
+
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+
+.contact-info {
+    font-size: 14px;
+    color: #555;
+}
+
+
+
+/* Main Navigation */
+.main-nav {
+    background-color: #fff;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+}
+
+.menu-button {
+    background-color: #6b4f1d;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Menu Section */
+.menu-section {
+    padding: 30px;
+}
+
+.search-sort-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    padding: 10px;
+    width: 100%;
+    max-width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.sort-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+
+.product-card img {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+
+
+.quantity-selector button {
+    background-color: #6b4f1d;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+
+/* Cart Section */
+.cart-section {
+    padding: 30px;
+}
+
+.cart-summary {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    text-align: right;
+}
+
+.checkout-button {
+    background-color: #6b4f1d;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.continue-shopping {
+    color: #6b4f1d;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+
+/* Responsive Design */
+
+/* Mobile Phones */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 10px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .menu-section {
+        padding: 20px;
+    }
+
+    .product-card {
+        margin: 10px 0;
+        max-width: 100%;
+    }
+
+    .search-input, .sort-select {
+        width: 100%;
+    }
+
+    .product-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cart-summary {
+        text-align: left;
+    }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .product-grid {
+        justify-content: space-around;
+    }
+
+    .product-card {
+        margin: 15px;
+        max-width: 300px;
+    }
+
+    .search-input, .sort-select {
+        width: 48%;
+    }
+}
+
+/* Large Desktops */
+@media (min-width: 1024px) {
+    .product-grid {
+        justify-content: flex-start;
+    }
+
+    .product-card {
+        width: 300px;
+    }
+
+    .search-input, .sort-select {
+        width: 30%;
+    }
+}
