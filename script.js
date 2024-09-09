@@ -10,11 +10,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function addToCart(productCard, quantity, people, price, separatePlates) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Ensure the price is numeric
         let item = {
             productName: productCard.querySelector('h3').textContent,
             quantity: parseInt(quantity),
             people: parseInt(people),
-            price: parseFloat(price),
+            price: parseFloat(price.replace(/[^\d.-]/g, '')), // Strip any non-numeric characters like $
             separatePlates: separatePlates,
             imageUrl: productCard.querySelector('img').src
         };
@@ -28,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();  // Update cart count after adding item
-        // alert("Item added to cart!");
     }
 
     function refreshCart() {
@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function() {
         cartContainer.innerHTML = '';  // Clear existing cart display
     
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        console.log('Loaded cart:', cart);
     
         let subtotal = 0;
     
@@ -44,11 +43,13 @@ document.addEventListener("DOMContentLoaded", function() {
             cartContainer.textContent = 'Your cart is empty.';
         } else {
             cart.forEach((item, index) => {
-                const totalItemPrice = item.price * item.quantity;
+                // Ensure the price is a number
+                const itemPrice = parseFloat(item.price);
+                const totalItemPrice = itemPrice * item.quantity;
                 subtotal += totalItemPrice;  // Keep track of the subtotal
             
                 const itemElement = document.createElement('div');
-                itemElement.classList.add('cart-item'); // Add a class for potential CSS styling
+                itemElement.classList.add('cart-item');
                 itemElement.innerHTML = `
                     <div class="item-info">
                         <img src="${item.imageUrl}" alt="${item.productName}" style="width: 50px; height: 50px;">
