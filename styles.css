@@ -41,22 +41,16 @@ input[type="number"]::-webkit-inner-spin-button {
     transform: scale(1.05);
 }
 
-.form-row {
-    display: flex;
-    align-items: center; /* Centers items vertically */
-    justify-content: flex-start; /* Aligns items to the start of the row */
-    width: 100%; /* Takes full width to avoid unwanted text wrapping */
-}
-
 .checkbox-container {
-    flex-direction: row; /* Ensures label and checkbox are in a row */
-    align-items: center; /* Aligns checkbox and label vertically */
-    justify-content: flex-start; /* Ensures they align to the left */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align to the left */
 }
 
 .checkbox-container input[type="checkbox"] {
-    margin-right: -700px; /* Space between the checkbox and the label */
+    margin-right: 10px; /* Adds spacing between checkbox and label */
 }
+
 
 .checkbox-container label {
     white-space: nowrap; /* Prevents label from wrapping */
