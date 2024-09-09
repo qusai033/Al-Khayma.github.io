@@ -173,7 +173,7 @@ h2 {
 
 #order-form label {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 #order-form input, #order-form textarea {
@@ -462,6 +462,15 @@ footer {
 }
 
 /* Responsive Design */
+/* For smaller screens */
+@media (max-width: 768px) {
+    .checkbox-container label {
+        font-size: 14px;
+        line-height: 1.4;
+        word-wrap: break-word;
+        max-width: 100%; /* Ensures text wraps within the screen width */
+    }
+}
 
 /* Mobile Phones */
 @media (max-width: 768px) {
