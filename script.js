@@ -121,16 +121,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('cart-count').textContent = totalCount;
     }
 
-
-
-    // Handle sandwich item with minimum quantity of 10
-    document.querySelectorAll('.sandwich-quantity').forEach(input => {
-        input.addEventListener('input', function() {
-            if (parseInt(this.value, 10) < 10) {
-                this.value = 10;
-            }
-        });
-    });
     
     
     document.querySelectorAll('.plus-btn, .minus-btn').forEach(btn => {
