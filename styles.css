@@ -4,6 +4,42 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+.image-link {
+    display: inline-block;
+    position: relative;
+}
+
+.image-link::after {
+    content: "More Info";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.image-link:hover::after {
+    opacity: 1;
+}
+
+.clickable-image {
+    display: block;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.clickable-image:hover {
+    transform: scale(1.05);
+}
 
 .form-row {
     display: flex;
