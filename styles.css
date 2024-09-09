@@ -49,7 +49,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .checkbox-container input[type="checkbox"] {
-    margin-right: 10px; /* Adds spacing between checkbox and label */
+    margin-right: 1000px; /* Adds spacing between checkbox and label */
 }
 
 
