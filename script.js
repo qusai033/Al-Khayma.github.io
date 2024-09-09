@@ -7,6 +7,16 @@ document.addEventListener("DOMContentLoaded", function() {
         productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
     }
 
+        // Function to initialize price display
+    function initializePrice(productCard) {
+        const quantityInput = productCard.querySelector('.quantity-input');
+        const basePrice = parseFloat(productCard.querySelector('.price').dataset.priceBase);
+        const minQuantity = quantityInput.min ? parseInt(quantityInput.min) : 1;
+        
+        const totalPrice = basePrice * minQuantity;
+        productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
+    }
+
 
     function addToCart(productCard, quantity, people, price, separatePlates) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
