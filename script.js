@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
         productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
     }
 
+
     function addToCart(productCard, quantity, people, price, separatePlates) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let item = {
@@ -122,24 +123,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
-    // JavaScript for the sandwich item with a minimum quantity of 10
-    document.querySelectorAll('.sandwich-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const input = btn.closest('.quantity-selector').querySelector('.sandwich-quantity');
-            const currentValue = parseInt(input.value, 10);
-            
-            if (btn.classList.contains('minus-btn')) {
-                if (currentValue > 10) {
-                    input.value = currentValue - 1;
-                } else {
-                    alert("You must order at least 10 sandwiches.");
-                }
-            } else if (btn.classList.contains('plus-btn')) {
-                input.value = currentValue + 1;
+    // Handle sandwich item with minimum quantity of 10
+    document.querySelectorAll('.sandwich-quantity').forEach(input => {
+        input.addEventListener('input', function() {
+            if (parseInt(this.value, 10) < 10) {
+                this.value = 10;
             }
         });
     });
+    
+    
+    document.querySelectorAll('.plus-btn, .minus-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const input = this.closest('.quantity-selector').querySelector('.quantity-input');
+            let currentValue = parseInt(input.value, 10);
+    
+            if (btn.classList.contains('minus-btn')) {
+                if (input.classList.contains('sandwich-quantity') && currentValue > 10) {
+                    input.value = currentValue - 1;
+                } else if (!input.classList.contains('sandwich-quantity') && currentValue > 1) {
+                    input.value = currentValue - 1;
+                }
+            } else {
+                input.value = currentValue + 1;
+            }
+    
+            updatePrice(this.closest('.product-card'));
+        });
+    });
+
+    document.querySelectorAll('.sandwich-quantity').forEach(input => {
+        input.addEventListener('input', function() {
+            if (parseInt(this.value, 10) < 10) {
+                this.value = 10; // Enforce minimum of 10 sandwiches
+            }
+        });
+    });
+
 
 
     document.querySelectorAll('.minus-btn, .plus-btn').forEach(btn => {
