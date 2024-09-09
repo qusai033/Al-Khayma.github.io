@@ -75,8 +75,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     
         // Calculate taxes and total
+        const delivery = 15;
         const taxes = subtotal * 0.3;
-        const total = subtotal;
+        const total = subtotal + delivery;
     
         // Update the subtotal, taxes, and total display
         document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
