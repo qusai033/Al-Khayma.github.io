@@ -123,6 +123,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+    // JavaScript for the sandwich item with a minimum quantity of 10
+    document.querySelectorAll('.sandwich-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const input = btn.closest('.quantity-selector').querySelector('.sandwich-quantity');
+            const currentValue = parseInt(input.value, 10);
+            
+            if (btn.classList.contains('minus-btn')) {
+                if (currentValue > 10) {
+                    input.value = currentValue - 1;
+                } else {
+                    alert("You must order at least 10 sandwiches.");
+                }
+            } else if (btn.classList.contains('plus-btn')) {
+                input.value = currentValue + 1;
+            }
+        });
+    });
+
+
     document.querySelectorAll('.minus-btn, .plus-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const input = btn.classList.contains('minus-btn') ? btn.nextElementSibling : btn.previousElementSibling;
