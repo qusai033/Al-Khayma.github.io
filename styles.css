@@ -45,16 +45,13 @@ input[type="number"]::-webkit-inner-spin-button {
     display: flex;
     align-items: center;
     justify-content: flex-start; /* Align to the left */
+    flex-wrap: wrap;
 }
 
 .checkbox-container input[type="checkbox"] {
     margin-right: 10px; /* Adds spacing between checkbox and label */
 }
 
-
-.checkbox-container label {
-    white-space: nowrap; /* Prevents label from wrapping */
-}
 
 
 
