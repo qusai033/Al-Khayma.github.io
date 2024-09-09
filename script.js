@@ -161,15 +161,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
-
-    document.querySelectorAll('.minus-btn, .plus-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const input = btn.classList.contains('minus-btn') ? btn.nextElementSibling : btn.previousElementSibling;
-            input.value = parseInt(input.value, 10) + (btn.classList.contains('minus-btn') ? -1 : 1);
-            updatePrice(btn.closest('.product-card'));
-        });
-    });
-
     document.querySelectorAll('.people-select').forEach(select => {
         select.addEventListener('change', function() {
             updatePrice(this.closest('.product-card'));
