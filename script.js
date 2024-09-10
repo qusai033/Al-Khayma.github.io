@@ -1,20 +1,18 @@
 document.addEventListener("DOMContentLoaded", function() {
     function updatePrice(productCard) {
-        const peopleSelect = productCard.querySelector('.people-select');
         const quantityInput = productCard.querySelector('.quantity-input');
-        let basePrice = parseFloat((peopleSelect ? peopleSelect.selectedOptions[0].dataset.price : productCard.querySelector('.price').dataset.priceBase));
-        const totalPrice = basePrice * parseInt(quantityInput.value, 10);
+        let basePrice = parseFloat(productCard.querySelector('.price').dataset.priceBase);
+        const totalPrice = basePrice * parseInt(quantityInput.value, 10); // Calculate based on input value
         productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
     }
 
-        // Function to initialize price display
+    // Initialize price when page loads
     function initializePrice(productCard) {
         const quantityInput = productCard.querySelector('.quantity-input');
-        const basePrice = parseFloat(productCard.querySelector('.price').dataset.priceBase);
-        const minQuantity = quantityInput.min ? parseInt(quantityInput.min) : 1;
-        
-        const totalPrice = basePrice * minQuantity;
-        productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
+        let basePrice = parseFloat(productCard.querySelector('.price').dataset.priceBase);
+        const initialQuantity = parseInt(quantityInput.value, 10);
+        const initialPrice = basePrice * initialQuantity;
+        productCard.querySelector('.price').textContent = initialPrice.toFixed(2);
     }
 
         // Initialize prices on page load for all product cards
@@ -25,12 +23,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function addToCart(productCard, quantity, people, price, separatePlates) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        // Ensure the price is numeric
         let item = {
             productName: productCard.querySelector('h3').textContent,
             quantity: parseInt(quantity),
             people: parseInt(people),
-            price: parseFloat(price.replace(/[^\d.-]/g, '')), // Strip any non-numeric characters like $
+            price: parseFloat(productCard.querySelector('.price').dataset.priceBase), // Use the base price per unit
             separatePlates: separatePlates,
             imageUrl: productCard.querySelector('img').src
         };
@@ -90,7 +87,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 itemElement.querySelector('.btn-remove').addEventListener('click', () => removeItem(index));
             });
         }
-    
+        
+
         // Calculate taxes and total
         const delivery = 15;
         const taxes = subtotal * 0.3;
@@ -102,7 +100,10 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('total').textContent = `$${total.toFixed(2)}`;
     }
 
-
+    // Initialize all prices on page load
+    document.querySelectorAll('.product-card').forEach(productCard => {
+        initializePrice(productCard);
+    });
 
 
     function changeQuantity(index, delta) {
