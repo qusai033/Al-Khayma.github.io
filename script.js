@@ -15,11 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
         productCard.querySelector('.price').textContent = initialPrice.toFixed(2);
     }
 
-        // Initialize prices on page load for all product cards
-    document.querySelectorAll('.product-card').forEach(productCard => {
-        initializePrice(productCard);
-    });
-
 
     function addToCart(productCard, quantity, people, price, separatePlates) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
