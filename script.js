@@ -6,6 +6,25 @@ document.addEventListener("DOMContentLoaded", function() {
         productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
     }
 
+    function updatePrice(productCard) {
+        const peopleSelect = productCard.querySelector('.people-select');
+        const quantityInput = productCard.querySelector('.quantity-input');
+        
+        // Get base price from the selected number of people, or fall back to base price
+        let basePrice = parseFloat(
+            (peopleSelect && peopleSelect.selectedOptions[0]) 
+            ? peopleSelect.selectedOptions[0].dataset.price 
+            : productCard.querySelector('.price').dataset.priceBase
+        );
+        
+        // Calculate the total price
+        const totalPrice = basePrice * parseInt(quantityInput.value, 10);
+        
+        // Update the price display
+        productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
+    }
+
+
     // Initialize price when page loads
     function initializePrice(productCard) {
         const quantityInput = productCard.querySelector('.quantity-input');
