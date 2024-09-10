@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tray of Rice - Al-Khayma Online Restaurant</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html">
+                <img src="logo.png" alt="Logo" class="logo">
+            </a>
+            <div class="header-right">
+                <a href="cart.html" class="cart-icon" id="cart-button">
+                    <img src="cart.png" alt="Cart">
+                    <span id="cart-count">0</span> <!-- This span will show the number of items -->
+                </a>
+                <a href="tel:+15203607081" class="contact-button">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="product-grid">
+            <!-- Existing Catering Items -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="img5.png" alt="chicken">
+            </div>
+
+            <div class="product-info">
+                <h3>Chicken Shawarma</h3>
+                <p>Chicken Shawarma with sauce, letters and tomatoes.</p>
+                <p>Suitable for large gatherings or events.</p>
+                <p>Minimum of 10 shandwaches is required.</p>
+                
+                <p>$<span class="price" data-price-base="10">10.00</span></p>
+
+                
+                    <div class="quantity-selector">
+                        <button class="minus-btn sandwich-btn">-</button>
+                        <input type="number" value="10" min="10" class="quantity-input sandwich-quantity"> <!-- Sandwich specific min 10 -->
+                        <button class="plus-btn sandwich-btn">+</button>
+                    </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <footer>
+        <p>Contact Us: qusai4business@gmail.com | Follow us on Social Media</p>
+        <a href="https://forms.gle/SAMKBDYCAADp18pX7" target="_blank" rel="noopener noreferrer" >Request Something Else</a>
+
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="common.js"></script>
+
+</body>
+</html>
