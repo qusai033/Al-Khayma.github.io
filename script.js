@@ -198,9 +198,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Fetch the displayed price (after calculation based on number of people and quantity)
             const price = parseFloat(productCard.querySelector('.price').textContent); 
             
-            // Properly select the checkbox for separate plates by class and check if it is checked
-            const separatePlatesCheckbox = productCard.querySelector('.separate-plates');
-            const separatePlates = separatePlatesCheckbox ? separatePlatesCheckbox.checked : false;
+            const separatePlates = productCard.querySelector('.separate-plates') ? productCard.querySelector('.separate-plates').checked : false;
     
             console.log('Separate Plates Checkbox:', separatePlatesCheckbox);  // Debugging
             console.log('Separate Plates Checked:', separatePlates);  // Debugging
