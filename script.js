@@ -30,31 +30,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
     function addToCart(productCard, quantity, people, price, separatePlates) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        // Debugging: Check if the correct price is being passed
+        console.log('Adding item to cart with price:', price); 
+    
         let item = {
             productName: productCard.querySelector('h3').textContent,
             quantity: parseInt(quantity),
             people: parseInt(people),
-            price: parseFloat(productCard.querySelector('.price').dataset.priceBase), // Use the base price per unit
+            price: parseFloat(price), // Store the correct price
             separatePlates: separatePlates,
             imageUrl: productCard.querySelector('img').src
         };
-
+    
         const existingItem = cart.find(x => x.productName === item.productName && x.people === item.people && x.separatePlates === item.separatePlates);
         if (existingItem) {
             existingItem.quantity += item.quantity;
         } else {
             cart.push(item);
         }
-
+    
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();  // Update cart count after adding item
+        refreshCart(); // Refresh cart to show updated items
     }
-
-
-
+    
+    // Update cart rendering logic
     function refreshCart() {
         const cartContainer = document.getElementById('cart-items');
         cartContainer.innerHTML = '';  // Clear existing cart display
@@ -67,9 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
             cartContainer.textContent = 'Your cart is empty.';
         } else {
             cart.forEach((item, index) => {
-                let itemPrice = parseFloat(item.price);
-    
-                // Ensure that the price for each item is multiplied by its quantity
+                const itemPrice = parseFloat(item.price); // Use the price stored in the cart item
                 const totalItemPrice = itemPrice * item.quantity;
                 subtotal += totalItemPrice;  // Keep track of the subtotal
     
@@ -92,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         <button class="btn-remove">Remove</button>
                     </div>
                 `;
-    
                 cartContainer.appendChild(itemElement);
     
                 // Event listeners for quantity changes and item removal
@@ -112,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('taxes').textContent = `$${taxes.toFixed(2)}`;
         document.getElementById('total').textContent = `$${total.toFixed(2)}`;
     }
+
 
 
     // Initialize all prices on page load
