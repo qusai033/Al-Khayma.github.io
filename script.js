@@ -200,8 +200,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             const separatePlates = productCard.querySelector('.separate-plates') ? productCard.querySelector('.separate-plates').checked : false;
     
-            console.log('Separate Plates Checkbox:', separatePlatesCheckbox);  // Debugging
-            console.log('Separate Plates Checked:', separatePlates);  // Debugging
+            console.log('Separate Plates Checked:', separatePlates);  // Correct debugging statement
     
             addToCart(
                 productCard,
@@ -212,6 +211,7 @@ document.addEventListener("DOMContentLoaded", function() {
             );
         });
     });
+
 
 
     refreshCart();
