@@ -195,18 +195,19 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
-            const price = parseFloat(productCard.querySelector('.price').textContent); // Fetch the correct price for the number of people
-    
+            
+            // Fetch the displayed price (after calculation based on number of people and quantity)
+            const price = parseFloat(productCard.querySelector('.price').textContent); 
+            
             addToCart(
                 productCard,
                 productCard.querySelector('.quantity-input').value,
                 productCard.querySelector('.people-select') ? productCard.querySelector('.people-select').value : 'N/A',
-                price,  // Use the updated price
+                price,  // Pass the updated price
                 productCard.querySelector('#separate-plates') ? productCard.querySelector('#separate-plates').checked : false
             );
         });
     });
-
 
 
     refreshCart();
