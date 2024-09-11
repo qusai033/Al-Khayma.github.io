@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
     
             // Get the Separate Plates checkbox status
-            const separatePlates = productCard.querySelector('.separate-plates') ? productCard.querySelector('.separate-plates').checked : false;
+            const separatePlates = productCard.querySelector('#separate-plates') ? productCard.querySelector('#separate-plates').checked : false;
     
             console.log('Selected Price for Cart:', price);  // Debugging
     
