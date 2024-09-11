@@ -217,6 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+
     refreshCart();
     updateCartCount();  // Update cart count after changing quantity
 });
