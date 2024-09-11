@@ -33,15 +33,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function addToCart(productCard, quantity, people, separatePlates) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        
-        // Use the current displayed price in the product card for the selected number of people
+    
+        // Get the current price displayed in the product card
         let price = parseFloat(productCard.querySelector('.price').textContent);
+    
+        // If the product is a sandwich, we divide the price by 10 to get the base price for one sandwich
+        if (productCard.querySelector('h3').textContent.toLowerCase().includes('sandwich')) {
+            price = price / 10;  // Divide by 10 to get per sandwich price
+        }
     
         let item = {
             productName: productCard.querySelector('h3').textContent,
             quantity: parseInt(quantity),
             people: parseInt(people),
-            price: price, // Store the calculated price
+            price: price, // Store the price per item (not the total price for 10 sandwiches)
             separatePlates: separatePlates,
             imageUrl: productCard.querySelector('img').src
         };
@@ -58,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
+
     function refreshCart() {
         const cartContainer = document.getElementById('cart-items');
         cartContainer.innerHTML = '';  // Clear existing cart display
@@ -70,11 +76,12 @@ document.addEventListener("DOMContentLoaded", function() {
             cartContainer.textContent = 'Your cart is empty.';
         } else {
             cart.forEach((item, index) => {
-                // Ensure the price is a number
-                const itemPrice = parseFloat(item.price);
+                let itemPrice = parseFloat(item.price);
+    
+                // Ensure that the price for each item is multiplied by its quantity
                 const totalItemPrice = itemPrice * item.quantity;
                 subtotal += totalItemPrice;  // Keep track of the subtotal
-            
+    
                 const itemElement = document.createElement('div');
                 itemElement.classList.add('cart-item');
                 itemElement.innerHTML = `
@@ -82,7 +89,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         <img src="${item.imageUrl}" alt="${item.productName}" style="width: 50px; height: 50px;">
                         <div class="item-text">
                             ${item.quantity}x ${item.productName} for ${item.people} people - $${totalItemPrice.toFixed(2)} total
-                            
                             ${item.separatePlates ? ' (Separate Plates)' : ''}
                         </div>
                     </div>
@@ -95,17 +101,16 @@ document.addEventListener("DOMContentLoaded", function() {
                         <button class="btn-remove">Remove</button>
                     </div>
                 `;
-
+    
                 cartContainer.appendChild(itemElement);
-            
+    
                 // Event listeners for quantity changes and item removal
                 itemElement.querySelector('.btn-decrease').addEventListener('click', () => changeQuantity(index, -1));
                 itemElement.querySelector('.btn-increase').addEventListener('click', () => changeQuantity(index, 1));
                 itemElement.querySelector('.btn-remove').addEventListener('click', () => removeItem(index));
             });
         }
-        
-
+    
         // Calculate taxes and total
         const delivery = 15;
         const taxes = subtotal * 0.3;
@@ -116,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('taxes').textContent = `$${taxes.toFixed(2)}`;
         document.getElementById('total').textContent = `$${total.toFixed(2)}`;
     }
+
 
     // Initialize all prices on page load
     document.querySelectorAll('.product-card').forEach(productCard => {
