@@ -199,10 +199,12 @@ document.addEventListener("DOMContentLoaded", function() {
             // Fetch the displayed price (after calculation based on number of people and quantity)
             const price = parseFloat(productCard.querySelector('.price').textContent); 
             
+            // Get the Separate Plates checkbox status
             const separatePlates = productCard.querySelector('.separate-plates') ? productCard.querySelector('.separate-plates').checked : false;
     
-            console.log('Separate Plates Checked:', separatePlates);  // Correct debugging statement
+            console.log('Separate Plates Checked:', separatePlates);  // Debugging
     
+            // Add the item to cart with the separate plates checkbox status
             addToCart(
                 productCard,
                 productCard.querySelector('.quantity-input').value,
