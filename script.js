@@ -1,12 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
     function updatePrice(productCard) {
-        const quantityInput = productCard.querySelector('.quantity-input');
-        let basePrice = parseFloat(productCard.querySelector('.price').dataset.priceBase);
-        const totalPrice = basePrice * parseInt(quantityInput.value, 10); // Calculate based on input value
-        productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
-    }
-
-    function updatePrice(productCard) {
         const peopleSelect = productCard.querySelector('.people-select');
         const quantityInput = productCard.querySelector('.quantity-input');
         
@@ -17,12 +10,13 @@ document.addEventListener("DOMContentLoaded", function() {
             : productCard.querySelector('.price').dataset.priceBase
         );
         
-        // Calculate the total price
+        // Calculate the total price based on the selected quantity and base price
         const totalPrice = basePrice * parseInt(quantityInput.value, 10);
         
         // Update the price display
         productCard.querySelector('.price').textContent = totalPrice.toFixed(2);
     }
+
 
 
     // Initialize price when page loads
