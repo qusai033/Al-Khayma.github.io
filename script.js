@@ -196,9 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
             
-            // Get the Separate Plates checkbox status    
-            console.log('Separate Plates Checked:', separatePlates);  // Debugging
-    
+            // Get the Separate Plates checkbox status       
             // Add the item to cart with the separate plates checkbox status
             addToCart(
                 productCard,
