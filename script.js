@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         <button class="btn-remove">Remove</button>
                     </div>
                 `;
+
                 cartContainer.appendChild(itemElement);
             
                 // Event listeners for quantity changes and item removal
