@@ -197,15 +197,19 @@ document.addEventListener("DOMContentLoaded", function() {
             // Fetch the displayed price (after calculation based on number of people and quantity)
             const price = parseFloat(productCard.querySelector('.price').textContent); 
             
+            // Capture the separate plates checkbox status
+            const separatePlates = productCard.querySelector('#separate-plates') ? productCard.querySelector('#separate-plates').checked : false;
+            
             addToCart(
                 productCard,
                 productCard.querySelector('.quantity-input').value,
                 productCard.querySelector('.people-select') ? productCard.querySelector('.people-select').value : 'N/A',
-                productCard.querySelector('.price').textContent,
-                productCard.querySelector('#separate-plates') ? productCard.querySelector('#separate-plates').checked : false
+                price, // Pass the correct price
+                separatePlates // Pass the checkbox status
             );
         });
     });
+
 
 
     refreshCart();
