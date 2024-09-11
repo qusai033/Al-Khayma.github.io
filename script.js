@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         <img src="${item.imageUrl}" alt="${item.productName}" style="width: 50px; height: 50px;">
                         <div class="item-text">
                             ${item.quantity}x ${item.productName} for ${item.people} people - $${totalItemPrice.toFixed(2)} total
+                            
                             ${item.separatePlates ? ' (Separate Plates)' : ''}
                         </div>
                     </div>
