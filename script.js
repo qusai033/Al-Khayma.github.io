@@ -196,12 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
             
-            // Fetch the displayed price (after calculation based on number of people and quantity)
-            const price = parseFloat(productCard.querySelector('.price').textContent); 
-            
-            // Get the Separate Plates checkbox status
-            const separatePlates = productCard.querySelector('.separate-plates') ? productCard.querySelector('.separate-plates').checked : false;
-    
+            // Get the Separate Plates checkbox status    
             console.log('Separate Plates Checked:', separatePlates);  // Debugging
     
             // Add the item to cart with the separate plates checkbox status
@@ -209,8 +204,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 productCard,
                 productCard.querySelector('.quantity-input').value,
                 productCard.querySelector('.people-select') ? productCard.querySelector('.people-select').value : 'N/A',
-                price,  // Pass the correct price
-                separatePlates  // Pass the checkbox status
+                productCard.querySelector('.price').textContent,
+                productCard.querySelector('#separate-plates') ? productCard.querySelector('#separate-plates').checked : false
             );
         });
     });
