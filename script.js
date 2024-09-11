@@ -29,19 +29,35 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-    function addToCart(productCard, quantity, people, price, separatePlates) {
+
+
+    function addToCart(productCard, quantity, people, separatePlates) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Use the current displayed price in the product card for the selected number of people
+        let price = parseFloat(productCard.querySelector('.price').textContent);
+    
         let item = {
             productName: productCard.querySelector('h3').textContent,
             quantity: parseInt(quantity),
             people: parseInt(people),
-            price: parseFloat(productCard.querySelector('.price').dataset.priceBase), // Use the base price per unit
+            price: price, // Store the calculated price
             separatePlates: separatePlates,
             imageUrl: productCard.querySelector('img').src
         };
+    
+        const existingItem = cart.find(x => x.productName === item.productName && x.people === item.people && x.separatePlates === item.separatePlates);
+        if (existingItem) {
+            existingItem.quantity += item.quantity;
+        } else {
+            cart.push(item);
+        }
+    
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();  // Update cart count after adding item
+    }
 
 
-        
 
         const existingItem = cart.find(x => x.productName === item.productName && x.people === item.people && x.separatePlates === item.separatePlates);
         if (existingItem) {
