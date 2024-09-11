@@ -193,28 +193,26 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
             
-            // Fetch the selected price for the number of people
-            const peopleSelect = productCard.querySelector('.people-select');
             let price;
+            const peopleSelect = productCard.querySelector('.people-select');
     
-            // If a number of people is selected, fetch the associated price
-            if (peopleSelect && peopleSelect.selectedOptions.length > 0) {
-                price = parseFloat(peopleSelect.selectedOptions[0].dataset.price);
+            if (peopleSelect) {
+                // For dishes with a selected number of people, use the displayed price
+                price = parseFloat(productCard.querySelector('.price').textContent);
             } else {
-                // Fallback to base price if no specific selection is made
+                // For other items, use the base price from `data-price-base`
                 price = parseFloat(productCard.querySelector('.price').dataset.priceBase);
             }
     
             // Get the Separate Plates checkbox status
             const separatePlates = productCard.querySelector('.separate-plates') ? productCard.querySelector('.separate-plates').checked : false;
-    
-    
+        
             // Add the item to the cart with the correct price
             addToCart(
                 productCard,
                 productCard.querySelector('.quantity-input').value,
                 peopleSelect ? peopleSelect.value : 'N/A',  // Get the number of people
-                price,  // Pass the correct price (based on number of people)
+                price,  // Pass the correct price (either based on selection or base)
                 separatePlates  // Pass the checkbox status
             );
         });
