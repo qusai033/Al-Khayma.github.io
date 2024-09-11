@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 productCard,
                 productCard.querySelector('.quantity-input').value,
                 productCard.querySelector('.people-select') ? productCard.querySelector('.people-select').value : 'N/A',
-                price,  // Pass the updated price
+                productCard.querySelector('.price').textContent,
                 productCard.querySelector('#separate-plates') ? productCard.querySelector('#separate-plates').checked : false
             );
         });
