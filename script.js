@@ -31,33 +31,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    function addToCart(productCard, quantity, people, separatePlates) {
+    function addToCart(productCard, quantity, people, price, separatePlates) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
-        // Get the current price displayed in the product card
-        let price = parseFloat(productCard.querySelector('.price').textContent);
-    
-        // If the product is a sandwich, we divide the price by 10 to get the base price for one sandwich
-        if (productCard.querySelector('h3').textContent.toLowerCase().includes('sandwich')) {
-            price = price / 10;  // Divide by 10 to get per sandwich price
-        }
-    
         let item = {
             productName: productCard.querySelector('h3').textContent,
             quantity: parseInt(quantity),
             people: parseInt(people),
-            price: price, // Store the price per item (not the total price for 10 sandwiches)
+            price: parseFloat(productCard.querySelector('.price').dataset.priceBase), // Use the base price per unit
             separatePlates: separatePlates,
             imageUrl: productCard.querySelector('img').src
         };
-    
+
         const existingItem = cart.find(x => x.productName === item.productName && x.people === item.people && x.separatePlates === item.separatePlates);
         if (existingItem) {
             existingItem.quantity += item.quantity;
         } else {
             cart.push(item);
         }
-    
+
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();  // Update cart count after adding item
     }
