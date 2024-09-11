@@ -58,18 +58,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-
-        const existingItem = cart.find(x => x.productName === item.productName && x.people === item.people && x.separatePlates === item.separatePlates);
-        if (existingItem) {
-            existingItem.quantity += item.quantity;
-        } else {
-            cart.push(item);
-        }
-
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();  // Update cart count after adding item
-    }
-
     function refreshCart() {
         const cartContainer = document.getElementById('cart-items');
         cartContainer.innerHTML = '';  // Clear existing cart display
