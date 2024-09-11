@@ -46,6 +46,9 @@ document.addEventListener("DOMContentLoaded", function() {
             imageUrl: productCard.querySelector('img').src
         };
 
+
+        
+
         const existingItem = cart.find(x => x.productName === item.productName && x.people === item.people && x.separatePlates === item.separatePlates);
         if (existingItem) {
             existingItem.quantity += item.quantity;
@@ -188,18 +191,23 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
+            const price = parseFloat(productCard.querySelector('.price').textContent); // Fetch the correct price for the number of people
+    
             addToCart(
                 productCard,
                 productCard.querySelector('.quantity-input').value,
                 productCard.querySelector('.people-select') ? productCard.querySelector('.people-select').value : 'N/A',
-                productCard.querySelector('.price').textContent,
+                price,  // Use the updated price
                 productCard.querySelector('#separate-plates') ? productCard.querySelector('#separate-plates').checked : false
             );
         });
     });
+
+
 
     refreshCart();
     updateCartCount();  // Update cart count after changing quantity
