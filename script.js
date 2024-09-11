@@ -196,29 +196,30 @@ document.addEventListener("DOMContentLoaded", function() {
             let price;
             const peopleSelect = productCard.querySelector('.people-select');
     
+            // Check if there's a people select dropdown (indicating it's a dish with people-based pricing)
             if (peopleSelect) {
-                // For dishes with a selected number of people, use the displayed price
+                // For dishes, grab the updated price based on selected people
                 price = parseFloat(productCard.querySelector('.price').textContent);
             } else {
-                // For other items, use the base price from `data-price-base`
+                // For other items like sandwiches or appetizers, use the base price
                 price = parseFloat(productCard.querySelector('.price').dataset.priceBase);
             }
     
             // Get the Separate Plates checkbox status
             const separatePlates = productCard.querySelector('.separate-plates') ? productCard.querySelector('.separate-plates').checked : false;
-        
+    
+            console.log('Selected Price for Cart:', price);  // Debugging
+    
             // Add the item to the cart with the correct price
             addToCart(
                 productCard,
                 productCard.querySelector('.quantity-input').value,
-                peopleSelect ? peopleSelect.value : 'N/A',  // Get the number of people
-                price,  // Pass the correct price (either based on selection or base)
+                peopleSelect ? peopleSelect.value : 'N/A',  // Get the number of people if applicable
+                price,  // Pass the dynamically updated price for dishes, or base price for others
                 separatePlates  // Pass the checkbox status
             );
         });
     });
-
-
 
 
 
