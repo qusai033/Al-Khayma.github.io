@@ -193,17 +193,34 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
             
-            // Get the Separate Plates checkbox status       
-            // Add the item to cart with the separate plates checkbox status
+            // Fetch the correct price for the number of people selected
+            const peopleSelect = productCard.querySelector('.people-select');
+            let price;
+    
+            // If a specific number of people is selected, use the price from the selection
+            if (peopleSelect && peopleSelect.selectedOptions[0]) {
+                price = parseFloat(peopleSelect.selectedOptions[0].dataset.price);
+            } else {
+                // Fallback to base price if no specific selection is made
+                price = parseFloat(productCard.querySelector('.price').dataset.priceBase);
+            }
+            
+            // Get the Separate Plates checkbox status
+            const separatePlates = productCard.querySelector('.separate-plates') ? productCard.querySelector('.separate-plates').checked : false;
+    
+            console.log('Selected People Price:', price);  // Debugging
+    
+            // Add the item to the cart with the correct price
             addToCart(
                 productCard,
                 productCard.querySelector('.quantity-input').value,
                 productCard.querySelector('.people-select') ? productCard.querySelector('.people-select').value : 'N/A',
-                productCard.querySelector('.price').textContent,
-                productCard.querySelector('#separate-plates') ? productCard.querySelector('#separate-plates').checked : false
+                price,  // Use the updated price based on the people selected
+                separatePlates  // Pass the checkbox status
             );
         });
     });
+
 
 
 
