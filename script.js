@@ -202,6 +202,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const separatePlates = productCard.querySelector('#separate-plates') ? productCard.querySelector('#separate-plates').checked : false;
     
             console.log('Separate Plates Checked:', separatePlates); // Debugging to verify if the checkbox is being read correctly
+        
+            console.log('Separate Plates Checkbox:', separatePlatesCheckbox);
+
             
             addToCart(
                 productCard,
