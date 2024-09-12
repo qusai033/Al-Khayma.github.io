@@ -43,4 +43,18 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         //console.error("Order form not found on this page.");
     }
+
+    function setMinDate() {
+        let today = new Date();
+        today.setDate(today.getDate() + 2);  // Add 2 days to the current date
+        let minDate = today.toISOString().split('T')[0];  // Format as YYYY-MM-DD
+        dateInput.setAttribute('min', minDate);
+    }
+
+    // Set the minimum date on page load
+    setMinDate();
+
+    // Optionally, if you want to update the minimum date when user changes the input
+    dateInput.addEventListener('input', setMinDate);
+
 });
